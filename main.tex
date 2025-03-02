@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+% Package for making turing machine diagrams %
+\usepackage{tikz}
+\usetikzlibrary{chains,fit,shapes}
+% Packages for algorithms %
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% Package which has the nice looking empty set symbol (\varnothing)
+\usepackage{amssymb}
+% Package with the ceiling function
+%\usepackage{mathtools}
+%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage{bm}
+\usepackage{unitsdef}
+\usepackage[makeroom]{cancel}
+
+% Makes table of contents links clickable in pdf readers
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+\usepackage{biblatex}
+\addbibresource{bibliography.bib}
+
+\title{Value Theory Thoughts/Notes}
+\author{Alex Creiner}
+\date{}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{problem}{Problem}
+
+\theoremstyle{plain}
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{theorem}
+\newtheorem{fact}{Fact}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{claim}{Claim}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+
+
+\sloppy % ?
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\part{Notes on Laws of Chaos by Farjoun and Machover}
+\include{sections/stochastic-ltv}
+\include{sections/stochastic-exploitation-price-profit}
+\include{sections/stochastic-dynamics-over-time}
+
+\part{Notes on Marx's Economics by Morishima}
+\include{sections/morishima-equilibrium-model}
+\include{sections/morishima-transformation-problem}
+\include{sections/morishima-reproduction-reserve-army}
+
+\end{document}

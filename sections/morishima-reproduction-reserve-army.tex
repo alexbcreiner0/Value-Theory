@@ -1,0 +1,203 @@
+\section{Reproduction and the Reserve Army}
+\subsection{Simple Reproduction}
+For these it is essential to model the two departments separately. For each day let $\vec{x}_1$ and $\vec{x}_2$ be the real output bundles of the two departments. We assume that workers spend their entire income each day on wage goods. Suppose that for each unit of labor time the worker consumes $d_i$ amount of the $i^{th}$ wage good. Also let $f_i$ be the \emph{total} amount of commodity $i$ consumed by the capitalist class. 
+\begin{align}
+	\vec{d} = \begin{pmatrix} d_{m+1} \\ d_{m+2} \\ \vdots \\ d_n \end{pmatrix} \hspace{2cm} \vec{f} = \begin{pmatrix} f_{m+1} \\ f_{m+2} \\ \vdots \\ f_n \end{pmatrix}
+\end{align}
+represent unit consumption vectors. For simple reproduction, we have the condition $\vec{f}$ is consumed entirely by the capitalist class rather than any surplus being reinvested, and additionally we have that the bundle of raw materials $A_1\vec{x}_1 + A_2\vec{x}_2$ must be produced each day, so as to have the required materials tomorrow to make the same bundles tomorrow. These required finished goods are first of all $\vec{f}$, but also the wage goods, which amount to the total hours of labor worked multiplied by the unit bundle $\vec{d}$. The total consumption of wage goods in society then is 
+\[ (\vec{l}_1\cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2) \vec{d} \]
+We thus have the system
+\begin{align}
+	& \vec{x}_1 = A_1 \vec{x}_1 + A_2 \vec{x}_2 \\
+	& \vec{x}_2 = (\vec{l}_1\cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2) \vec{d} + \vec{f} 
+\end{align}
+Given a unit price vector $\vec{p}_2$ for wage goods, we have a fixed hourly wage $w  =\vec{p}_2 \cdot \vec{d}$. Likewise the total price of the capitalist consumption bundle is given $\Pi = \vec{p}_2 \cdot \vec{f}$. At an assumed equilibrium rate of profit $\pi$, we have price vector equations
+\begin{align}
+	& \vec{p}_1 = (1+\pi)(A_1^T\vec{p}_1 + w\vec{l}_1) \\
+	& \vec{p}_2 = (1+\pi)(A_2^T\vec{p}_1 + w\vec{l}_2) 
+\end{align}
+and the value determination equations
+\begin{align}
+	& \vec{\lambda}_1 = A_1^T\vec{\lambda}_1 + \vec{l}_1 = \vec{c}_1 + \vec{v}_1 + \vec{s}_1 \\
+	& \vec{\lambda}_2 = A_2^T\vec{\lambda}_1 + \vec{l}_2 = \vec{c}_2 + \vec{v}_2 + \vec{s}_2
+\end{align}
+What we need to do is aggregate all capital goods industries together, and the same for the wage goods industries. The way this is done is by defining unit bundles $\vec{\delta}_1$ and $\vec{\delta}_2$ representing an abstract unit of output from the whole department, and we will require for obvious reasons that 
+\begin{align}
+	\vec{\lambda}_1 \cdot \vec{\delta}_1 = \vec{\lambda}_2 \cdot \vec{\delta}_2 = 1 
+\end{align}
+We can now reduce our $\vec{c}$, $\vec{v}$ and $\vec{s}$ vectors into simple scalars:
+\[ c_I := \vec{c}_I \cdot \vec{\delta}_1 \hspace{1cm} v_I := \vec{v}_1 \cdot \vec{\delta}_1 \hspace{1cm} s_I := \vec{s}_1 \cdot \vec{\delta}_1 \]
+\[ c_{II} := \vec{c}_2 \cdot \vec{\delta}_2 \hspace{1cm} v_{II} := \vec{v}_2 \cdot \vec{\delta}_2 \hspace{1cm} s_{II} := \vec{s}_1 \cdot \vec{\delta}_1 \]
+This is technically overloading the notation since $c_1$ earlier was the first entry of $\vec{c}$, but Roman numeral subscripts are annoying and we probable won't need the old $c_1$ much, so I'm going to try running with this. Finally, let 
+\[ \vec{y}_1 = \vec{\lambda}_1 \cdot \vec{x}_1 \]
+\[ \vec{y}_2 = \vec{\lambda}_2 \cdot \vec{x}_2 \]
+Collapsing the vector equations of reproduction down to an aggregated system in terms of value requires some assumptions about the industries. In particular, we assume that all industries in the capital goods department have the same composition of capital, as do all industries in the wage goods department, so that they can be aggregated. With that known we get common ratios 
+\[ \frac{l_1}{\lambda_1} = \ldots \frac{l_m}{\lambda_m} \]
+\[ \frac{c_1}{\lambda_1} = \ldots \frac{c_m}{\lambda_m} \]
+\[ \frac{v_1}{\lambda_1} = \ldots \frac{v_m}{\lambda_m} \]
+\[ \frac{s_1}{\lambda_1} = \ldots \frac{s_m}{\lambda_m} \]
+as well as the same identities for department 2. For the second of these identities, denote the common ratios of $\frac{c_i}{\lambda_i} = \alpha_1$ for $i=1,\ldots,m$ and $\frac{c_i}{\lambda_i} = \alpha_2$ for $i=m+1,\ldots,n$. We then clearly have that $c_i=\alpha_1 \lambda_i$ for $i=1,\ldots,m$ and $c_i=\alpha_2 \lambda_i$ for $i=m+1,\ldots,n$, and so $\vec{c}_1 = \alpha_1 \vec{\lambda}_1$ and $\vec{c}_2 = \alpha_2 \vec{\lambda}_2$. Note then that for any vector $\vec{z}$ of the appropriate dimension, we have
+\[ \frac{\vec{c}_i \cdot \vec{z}}{\vec{\lambda}_i \cdot \vec{z}} = \alpha_i \] 
+for $i$ equal to either $1$ or $2$. In particular, we have
+\[ \frac{\vec{c}_i \cdot \vec{x}_i}{\vec{\lambda}_i \cdot \vec{x}_i} = \alpha_i = \frac{\vec{c}_i \cdot \vec{\delta}_i}{\vec{\lambda}_i \cdot \vec{\delta}_i} = \vec{c}_i \cdot \vec{\delta}_i \]
+Where the term on the right is either $c_I$ for $i=1$ and $c_{ii}$ for $i=2$. But the denominator of the left hand side is $y_i$. Multiplying this over for the two $i$s gives us the identity
+\[ c_Iy_1 = \vec{c}_1 \cdot \vec{x}_1 \]
+\[ c_{II} y_2 = \vec{c}_2 \cdot \vec{x}_2 \]
+We are left with the aggregated equation for the first department:
+\begin{equation}
+	y_1 = c_I y_1 + c_{II}y_2
+\end{equation}
+Furthermore we can note that it turns out that $\alpha_1 = c_I$ and $\alpha_2 = c_{II}$, so that $c_I$ turns out to be the common ratio of the $c_i$'s to the overall $\lambda_i$'s. An identical argument works for $s$ and $v$ to show that $\frac{s_i}{\lambda_i}=s_I$ for $i=1,\ldots,m$, or $s_{II}$ for $i=m+1,\ldots,n$, and to show that $\frac{v_i}{\lambda_i}=v_I$ for $i=1,\ldots,m$ or $v_{II}$ for $i=1,\ldots,n$. \par 
+Next note that $\vec{d} = \omega \vec{b}$. By dotting both sides of the department $2$ equation we get an equation for $y_2$. We get another equation for $y_2$ by dotting both sides of the second value determination equation by $\vec{x}_2$. Equating these gives
+\[ \vec{\lambda}_2 \cdot (\vec{l}_1 \cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2)\omega\vec{b} + \vec{\lambda}_2 \cdot \vec{f} = A_2^T \vec{\lambda}_1 \cdot \vec{x}_2 + \vec{l}_2 \cdot \vec{x}_2 \]
+We can do the same thing with the department $1$ equation and the first value determination equation. In this case a term cancels on either side and we are left with 
+\[ \vec{l}_1 \cdot \vec{x}_2 = \vec{\lambda}_1 \cdot A_2 \vec{x}_2 \]
+If we solve the former of these equations for $\vec{l}_2 \cdot \vec{x}_2$, add the two equations together and cancel terms we get the following equation
+\[ \vec{l}_1 \cdot \vec{x}_2 + \vec{l}_2 \cdot \vec{x}_2 = \vec{\lambda}_2 \cdot (\vec{l}_1 \cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2)\omega \vec{b} + \vec{\lambda}_2 \cdot \vec{f} \]
+Recall however that 
+\[ e = \frac{1 - \vec{\lambda}_2 \cdot \omega \vec{b}}{\vec{\lambda}_2 \cdot \omega \vec{b}} \]
+If we multiply top and bottom of this by $\vec{l}_1 \cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2$, we get a numerator that only includes $\vec{\lambda}_2 \cdot \vec{f}$. Multiplying both sides by the denominator gives us the equation
+\[ e\vec{\lambda}_2 \cdot (\vec{l}_1 \cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2) \omega \vec{b} = \vec{\lambda}_2 \cdot \vec{f} \]
+which says that the capitalist class consumes in value exactly what they extract in surplus value from the workers each day. Using this equation we can finally aggregate the second reproduction equation. We start by dotting the second unaggregated equation by $\vec{\lambda}_2$ to get $y_2$ on the left hand side. 
+\begin{align*}
+	y_2 &= \vec{\lambda}_2 \cdot (\vec{l}_1 \cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2)\omega \vec{b} + \vec{\lambda}_2 \cdot \vec{f} \\
+	&= \vec{\lambda}_2 \cdot (\vec{l}_1 \cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2)\omega \vec{b} + e\vec{\lambda}_2 \cdot (\vec{l}_1 \cdot \vec{x}_1 + \vec{l}_2 \cdot \vec{x}_2) \omega \vec{b} \\
+	&= [(\omega \vec{\lambda}_2 \cdot \vec{b})\vec{l}_1] \cdot \vec{x}_1 + [(\omega \vec{\lambda}_2 \cdot \vec{b}) \vec{l}_2] \cdot \vec{x}_2 + e[(\omega \vec{\lambda}_2 \cdot \vec{b})\vec{l}_1] \cdot \vec{x}_1 + e[(\omega \vec{\lambda}_2 \cdot \vec{b}) \vec{l}_2] \cdot \vec{x}_2 \\
+	&= \vec{v}_1 \cdot \vec{x}_1 + \vec{v}_2 \cdot \vec{x}_2 + \vec{s}_1 \cdot \vec{x}_1 + \vec{s}_2 \cdot \vec{x}_2 \\
+	&= v_I y_1 + v_{II}y_2 + s_I y_1 + s_{II} y_2
+\end{align*}
+At this point we're done aggregating, and so we will use integers instead of Roman numerals since we won't need to reference the first entry of the vector $\vec{c}$, for instance. (This previously was referred to as $c_1$, but now $c_1$ will instead take the place of $c_I$, and so forth. We thus have the following system of aggregated equations:
+\begin{align}
+	& y_1 = c_1 y_1 + c_2 y_2 \\
+	& y_2 = v_1 y_1 + v_2 y_2 + s_1 y_1 + s_2 y_2
+\end{align}
+which describe what the distribution of value between the departments must be day to day in order for society to reproduce itself. Note also that since $c_i + v_i + s_i = \lambda_i$ for each $i$, and $c_I = \frac{c_i}{\lambda}_i$ etc, we have
+\[ c_1 + v_1 + s_1 = \frac{c_i+v_i+s_i}{\lambda_i} = 1 \]
+As well as
+\[ c_2 + v_2 + s_2 = 1 \]
+This gives us another system of equations that $y_1$ and $y_2$ must satisfy:
+\begin{align}
+	& y_1 = c_1y_1 + v_1 y_1 + s_1 y_1 \\
+	& y_2 = c_2 y_2 + v_2 y_2 + s_2 y_2
+\end{align} 
+\subsection{Extended Reproduction}
+All variables will be implicitly assumed functions of $t$, which is time measured in units of one industrial cycle. As before, $y_1(t)$ is the total capital investment in department $1$ (measured in value) at the end of period $t$, $y_2(t)$ the same for department $2$. Assume that the same rate of exploitation prevails in both industries, i.e. $\frac{s_1}{v_1} = \frac{s_2}{v_2} = e$. The prevailing technical coefficients for period $t$ are $c_i(t)$, $v_i(t)$, and $s_i(t)$, $i=1,2$, but we won't see these as changing with $t$ just yet. \par 
+ Suppose that all capitalists reinvest the same percentage of their surplus product into industry, and that the same rate of profit prevails in both industries (ie equilibrium). Call this propensity to save $a \in (0,1)$. Thus, each cycle, capitalists in department $1$ take their surplus, $s_1y_1(t)$, take $as_1y_1(t)$ of that, and reinvest it. Of this reinvestment, 
+\[  \frac{c_1}{c_1+v_1}as_1y_1(t) \] 
+is invested in the capital goods department (department 1), while 
+\[ \frac{v_1}{c_1+v_1}as_1y_1(t) \]
+is invested in wage goods (department 2). Likewise capitalists in department 2 reinvest 
+\[\frac{c_2}{c_2+v_2}as_2y_2(t) \] in department $1$ and 
+\[\frac{v_2}{c_2+v_2}as_2y_2(t) \]
+ in department $2$. Over the course of period $t+1$, surplus reinvested as variable capital will produce surplus. In department $1$ this is the amount 
+ \[ e\frac{v_1}{c_1+v_1}as_1y_1(t) = \frac{s_1}{c_1+v_1}as_1y_1(t) \]
+and likewise
+\[ \frac{s_2}{c_2+v_2}as_2y_2(t) \]
+in department $2$. The total value output of the departments after period $t+1$ will then be
+\begin{align}
+	& y_1(t+1) = y_1(t) + as_1y_1(t) + \frac{s_1}{c_1+v_1}as_1y_1(t) = y_1(t) + \frac{1}{c_1+v_1}as_1y_1(t) \\
+	& y_2(t+1) = y_2(t) + as_2y_2(t) + \frac{s_2}{c_2+v_2}as_2y_2(t) = y_2(t) + \frac{1}{c_2+v_2}as_2y_2(t)
+\end{align}
+Facilitating this growth imposes requirements on the output of society by the end of period $t$. The capital goods output at time $t$ which allows for this growth is 
+\begin{align}
+	 y_1(t) &= c_1y_1(t) + c_2y_2(t) + c_1\Delta y_1(t) + c_2 \Delta y_2(t) \\
+	 		&= c_1y_1(t) + c_2y_2(t) + \frac{c_1}{c_1+v_1}as_1y_1(t) + \frac{c_2}{c_2+v_2}as_2y_2(t)
+\end{align}
+\begin{align}
+	y_2(t) &= v_1y_1(t) + v_2y_2(t) + v_1\Delta y_1(t) + v_2 \Delta y_2(t) + bs_1y_1(t) + bs_2y_2(t) \\
+			&= v_1y_1(t) + v_2y_2(t) + \frac{v_1}{c_1+v_1}as_1y_1(t) + \frac{v_2}{c_2+v_2}as_2y_2(t) + bs_1y_1(t) + bs_2y_2(t)
+\end{align}
+Since $\Delta y_i(t) = y_i(t+1)-y_i(t)$ for both $i$, we also have
+\begin{align}
+	y_1(t) &= c_1y_1(t) + c_2y_2(t) + c_1y_1(t+1) - c_1y_1(t) + c_2y_2(t+1)-c_2y_2(t) \\
+		&= c_1y_1(t+1) + c_2y_2(t+1)
+\end{align}
+and similarly
+\begin{align}
+	y_2(t) &= v_1y_1(t+1) + v_2y_2(t+1) + bs_1y_1(t) + bs_2y_2(t)
+\end{align}
+Therefore we have the matrix equation
+\begin{align}
+	\begin{pmatrix} y_1(t) \\ y_2(t) \end{pmatrix} &= \begin{pmatrix} c_1 & c_2 \\ v_1 & v_2 \end{pmatrix} \begin{pmatrix} y_1(t+1) \\ y_2(t+1) \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ bs_1 & bs_2 \end{pmatrix} \begin{pmatrix} y_1(t) \\ y_2(t) \end{pmatrix} \\
+	&= \begin{pmatrix} c_1 & c_2 \\ \frac{bs_1c_1 + v_1}{1-bs_2} & \frac{bs_1c_2 + v_2}{1-bs_2} \end{pmatrix}\begin{pmatrix} y_1(t+1) \\ y_2(t+1) \end{pmatrix} \\
+	&:= \begin{pmatrix} M_{11} & M_{12} \\ M_{21} & M_{22} \end{pmatrix}\begin{pmatrix} y_1(t+1) \\ y_2(t+1) \end{pmatrix}
+\end{align}
+Defining $\vec{y}(t)$ in terms of $\vec{y}(t+1)$ seems a bit backwards at first glance. However this incorporates both the conditions of growth based on reinvestment as well as the conditions \emph{for} that reinvestment imposed by the required output for that growth. Thus what we have here is a relation between $y_1(t)$ and $y_2(t)$ which must hold for reinvestment of the sort specified to continue uninterrupted. Let $\mu_1$ and $\mu_2$ denote the eigenvalues of the matrix $M$, and 
+\[ \vec{m}_1 = \begin{pmatrix} m^1_1 \\ m^1_2 \end{pmatrix}  \hspace{2cm} \begin{pmatrix} m^2_1 \\ m^2_2 \end{pmatrix} \]
+be associated eigenvectors. Then by setting the determinant of $M-\mu I$ equal to $0$, solving for $\mu$ and simplifying the contents of the radical after applying the quadratic formula, we obtain the solutions
+\[ \mu_1 =  \frac{1}{2}(M_{11}+M_{22}+\sqrt{(M_{11}-M_{22})^2 + 4M_{12}M_{21}}) \]
+\[ \mu_2 =  \frac{1}{2}(M_{11}+M_{22}-\sqrt{(M_{11}-M_{22})^2 + 4M_{12}M_{21}}) \]
+Since all of the $M_{ij}$s are positive we can see immediately that $\mu_1$ is always positive. Furthermore since the radical is always positive, $\mu_1$ is more than halfway between the smaller and the bigger of $M_{11}$ and $M_{22}$, so it must be bigger than at least one of these. Note that there exists some $u>0$ such that 
+\[ \sqrt{(M_{11}-M_{22})^2 + 4M_{12}M_{21}} = |M_{11} - M_{22}| + u \]
+since this is the distance plus some extra positive stuff inside the radical. Considering $\mu_2$ with this in mind, we see that we are taking the halfway point between $M_{11}$ and $M_{22}$, and subtracting away more than half the distance between them. Therefore $\mu_2$ may or may not be negative, but is always smaller than  both of $M_{11}$ and $M_{22}$. From the same argument we can also see that $\mu_1$ is \emph{bigger} than $M_{11}$ and $M_{22}$. When $\mu_1$ and $\mu_2$ are both positive, it is of course the case that $\mu_1 > \mu_2$. Suppose that $\mu_2$ is negative and that $\mu_1 < -\mu_2$. Then 
+\[ \frac{1}{2}(M_{11}+M_{22}+|M_{11} - M_{22}| + u < -\frac{1}{2}(M_{11}+M_{22}-|M_{11} - M_{22}| - u \]
+But this would imply that $M_{11} + M_{22} < 0$, which is a contradiction since all of these entries are positive. Thus we have the following facts known about the eigenvalues:
+\begin{itemize}
+	\item[(1)] $\mu_1 > 0$.
+	\item[(2)] $\mu_1$ is bigger than both $M_{11}$ and $M_{22}$
+	\item[(3)] $\mu_2$ is smaller than both $M_{11}$ and $M_{22}$
+	\item[(4)] $\mu_1 > |\mu_2|$.
+\end{itemize}
+With these observations in mind let us turn to the eigenvectors $\vec{m}_1$ and $\vec{m}_2$. These must satisfy the systems
+\begin{align}
+	& (M_{11} - \mu_1)m^1_1 + M_{12}m^1_2 = 0  \label{e11}\\
+	& M_{21}m^1_1 + (M_{22} - \mu_1)m^1_2 = 0 \label{e12}
+\end{align}
+\begin{align}
+	& (M_{11} - \mu_2)m^2_1 + M_{12}m^2_2 = 0  \label{e21}\\
+	& M_{21}m^2_1 + (M_{22} - \mu_2)m^2_2 = 0 \label{e22}
+\end{align}
+We can see here that $M_{11} - \mu_1$ is always negative, and so subtracting this term over and dividing we see that $m^1_1 = xm^2_1$ for some positive ratio $x$. Thus we can take the vector $\vec{m}_1$ as consisting of two positive entries. Namely let $m^1_1 = 1$, so that 
+\[ m_2^1 = \frac{\mu_1-M_{11}}{M_{12}}m^1_1 \]
+ Since $M_{11} - \mu_2$ is always positive, subtracting the term over and dividing gives that $m^2_1 = -xm^2_2$ for some positive $x$, and therefore we can take $\vec{m}_2$ as having a positive first entry and a negative second entry. In particular, again taking $m^2_1 = 1$, we have
+\[ m^2_2 = \frac{\mu_2-M_{11}}{M_{12}}m^2_1 \]-  
+  Thus $\vec{m}_1$ points somewhere in quadrant $1$ and $\vec{m}_2$ points somewhere in quadrant $2$, which is enough to be sure they are linearly independent. It follows that $M$ has an eigenbasis, and thus is always diagonalizable. Let 
+  \[ P = \begin{pmatrix} m^1_1 & m^2_1 \\ m^1_2 & m^2_2 \end{pmatrix} \implies P^{-1} = \frac{1}{m^1_1m^2_2-m^2_1m^1_2} \begin{pmatrix} m^2_2 & -m^2_1 \\ -m^1_2 & m^1_1 \end{pmatrix} \]
+Here seeing $P$ and $P^{-1}$ as change of basis matrices, $P$ takes vectors in the eigenbasis back to the standard basis, while $P^{-1}$ takes vectors from the standard basis into the eigenbasis. Let $\vec{y}(t)$ denote the pair of $y$ values in the standard basis, $\vec{z}(t)$ the vector in the eigenbasis, i.e. 
+\[ \vec{z}(t) = P^{-1}\vec{y} \]
+Then $M = PDP^{-1}$, where 
+\[ D = \begin{pmatrix} \mu_1 & 0 \\ 0 & \mu_2 \end{pmatrix} \] so that
+\begin{align}
+	& \vec{y}(t) = PDP^{-1}\vec{y}(t+1) = PD\vec{y}_{\mathcal{M}}(t+1) \\
+	&\implies \vec{z}(t) = D\vec{z}(t+1) \\
+	&\implies \begin{pmatrix} z_1(t) \\ z_2(t) \end{pmatrix} = \begin{pmatrix} \mu_1z_1(t+1) \\ \mu_1z_2(t+1) \end{pmatrix}
+\end{align}
+Letting $\eta_1 = z_1(0)$ and $\eta_2 = z_2(0)$ represent the initial values of $z_1$ and $z_2$, i.e.
+\[ \begin{pmatrix} \eta_1 \\ \eta_2 \end{pmatrix} = \frac{1}{m^1_1m^2_2-m^2_1m^1_2} \begin{pmatrix} m^2_2 & -m^2_1 \\ -m^1_2 & m^1_1 \end{pmatrix} \begin{pmatrix} y_1(0) \\ y_2(0) \end{pmatrix} \]
+\[ \eta_1 = \frac{m^2_2y_1(0)-m^2_1y_2(0)}{m^1_1m^2_2-m^2_1m^1_2} = \frac{(\mu_2-c_1)y_1(0)-c_2y_2(0)}{m^1_1(\mu_2-\mu_1)} \]
+\[ \eta_2 = \frac{-m^1_2y_1(0)+m^1_1y_2(0)}{m^1_1m^2_2-m^2_1m^1_2} = \frac{-(\mu_1-c_1)y_1(0)+c_2y_2(0)}{m^2_1(\mu_2-\mu_1)} \]
+ we have then that $z_i(t+1) = \frac{1}{\mu_i}z_1(t)$ for each $i$, so that 
+\[ z_1(t+1) = \frac{1}{\mu_1^t}\eta_1 \]
+and likewise
+\[ z_2(t+1) = \frac{1}{\mu_2^t}\eta_2 \]
+But $\vec{y}(t+1) = P\vec{z}(t+1)$, so 
+\[ \begin{pmatrix} y_1(t+1) \\ y_2(t+1) \end{pmatrix} = \begin{pmatrix} m^1_1 & m^2_1 \\ m^1_2 & m^2_2 \end{pmatrix} \begin{pmatrix} \frac{1}{\mu_1^t}\eta_1 \\ \frac{1}{\mu_2^t}\eta_2 \end{pmatrix} = \begin{pmatrix} \eta_1 m_1^1 \left(\frac{1}{\mu_1} \right)^t + \eta_2 m_1^2 \left( \frac{1}{\mu_2} \right)^t \\ \eta_1 m^1_2\left(\frac{1}{\mu_1} \right)^t + \eta_2 m^2_2 \left( \frac{1}{\mu_2} \right)^t \end{pmatrix} \]
+Setting $1 + g_i = \frac{1}{\mu_i}$ for both $i$, we finally have the solutions
+\begin{align}
+	& y_1(t) = \eta_1 m_1^1(1+g_1)^t + \eta_2 m_1^2 (1+g_2)^t \\
+	& y_2(t) = \eta_1 m_2^1(1+g_1)^t + \eta_2 m_2^2 (1+g_2)^t
+\end{align}
+(It seems like we should decrement and have $t-1$'s in the exponent but this doesn't produce functions which line up with $y_1(0)$ and $y_2(0)$ correctly unless you don't, and I don't care enough to consider the matter further than that.)
+There are some important observations to make about these solutions to make sense of them. First, since $\mu_1 > |\mu_2|$, we have that 
+\[ 1+g_1 < |1+g_2| \]
+Moreover we make the following claim:
+\begin{lemma}
+	$\mu_1 < 1$, always. Furthermore $\mu_2$ is negative iff $k_2 > k_1$ (where $k_i = \frac{c_i}{v_i}$). 
+\end{lemma}
+\begin{proof}
+	If we multiply equation \ref{e11} by $1-bs_1$, multiply equation \ref{e12} by $1-bs_2$, add the two equations together, and foil everything out into individual terms (probably actually a bad idea, see below), we get a big mess, set equal to $0$. Factor out $\mu_1$ from every term it's present in the mess. All remaining terms end up having either an $m^1_1$, an $m^1_2$, or both. Factor these out from their terms. Inside of the expression multiplied by $m^1_1$, without applying any identities it should turn out that it all collapses to $c_1+v_1$. Likewise the stuff multiplied by $m^1_2$ should collapse to $c_2 + v_2$. Move the $\mu_1$ stuff over to the other side of the equation, and distribute the minus sign. What we're left with is the equation 
+\begin{align}
+	 \mu_1[(1-bs_1)m^1_1 + (1-bs_2)m^1_2] &= (c_1+v_1)m^1_1 + (c_2+v_2)m^1_2 \\
+	 &= (1-s_1)m^1_1 + (1-s_2)m^1_2
+\end{align}
+since $v_i+c_i+s_i=1$. Now since $b<1$, we have that $bs_1 < s_1$, so that $1-bs_1 > 1-s_1$. Thus the left hand side of this equation would be greater than the right hand side if $\mu_1 \geq 0$. Since equality presumably holds it must follow then that $\mu_1 < 0$. \par 
+Moving on to $\mu_2$, multiply equation \ref{e21} by $v_1 + bs_1c_1$, equation \ref{e22} by $c_1(1-bs_2)$ (distribute but don't foil!), and subtract the latter from the former. Two terms will be seen to cancel. Pull $\mu_2$ out of the appropriate terms and subtract it over to the other side, then factor $m^2_2$ out of what's left. The expression multiplied by $m^2_2$ will simplify to $v_1c_2 - c_1v_2$, so that we are left with the equation
+\[ \mu_2[(v_1+bs_1c_1)m^2_1-c_1(1-bs_2)m^2_2] = (v_1c_2 - c_1v_2)m^2_2 \]
+We know that $m^2_1$ is going to be positive while $m^2_2$ is negative. Therefore the whole expression which $\mu_2$ is multiplied by is positive. The significance of this is that the sign of the left hand side is completely determined by $\mu_2$. With this in mind, consider the right hand side. Here, again $m^2_2$ is negative, so this side's sign is the reverse of the sign of the expression $v_1c_2 - c_1v_2$. Thus $\mu_2$ is positive iff $v_1c_2 - c_1v_2$ is negative, and negative iff $v_1c_2 - c_1v_2$ is positive. But since these variables are all themselves positive, we have
+\[ v_1c_2 > c_1v_2 \iff \frac{c_2}{v_2} > \frac{c_1}{v_1}  \]
+\end{proof}
+Since $\mu_1$ is positive and less than $1$, it follows that $1+g_1$ is positive and greater than $1$, i.e. $g_1 > 0$. If the composition of capital for the wage goods industry is greater than that of the capital goods industry, then $\mu_2 < 0$ and so $1+g_2 < 0$ as well. Moreover we will have $1 < 1+g_1 < |1+g_2|$, so we have that $1+g_2 < -1$, i.e. the growth cannot decay over time - it must blow up, as it oscillates every period. 
+\begin{corollary}
+	
+\end{corollary}
+

@@ -1,0 +1,481 @@
+\section{The Equilibrium Model}
+\subsection{The Consumption Matrix, Labor, and Value}
+	Have $a_{ij}$ being the amount of commodity $i$ required to produce a single unit of commodity $j$. \textbf{THIS IS THE SAME CONVENTION MORISHIMA USES}. Value: $\vec{\lambda} = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ \vdots \\ \lambda_n \end{pmatrix}$ is the values of a unit amounts of each commodity. Clearly 
+	\[ \lambda_i = a_{1i}\lambda_1 + a_{2i}\lambda_2 + \ldots + a_{mi}\lambda_m + l_i \]
+Where $\vec{l} = \begin{pmatrix} l_1 \\ l_2 \\ \vdots \\ l_m \end{pmatrix}$ is the vector of living labor values for a unit of each commodity. Thus if 
+\[ A = \begin{pmatrix} a_{11} & a_{12} & \ldots & a_{1m} \\
+						a_{21} & a_{22} & \ldots & a_{2m} \\
+						\vdots \\
+						a_{m1} & a_{m2} & \ldots & a_{mm}  \end{pmatrix}
+						= \begin{pmatrix} \vec{a}_1 & \vec{a}_2 & \ldots & \vec{a}_m \end{pmatrix} \]
+Then 
+\[ \vec{\lambda} = A^T\vec{\lambda} + \vec{l} \]
+Again, \textbf{this is the same $A$ as the one that Morishima uses}. Clearly $\lambda$ represents the labor embodied in a unit of each commodity. But is the labor embodied in a unit of some commodity the same as the total gross labor required to create a single unit of some commodity? It should be. Let $\vec{x}_1 = \begin{pmatrix} x^1_1 \\ x^1_2 \\ x^1_m \end{pmatrix}$ be the gross bundle of commodity amounts required to create a single unit of commodity $1$. How to find this? To make a single unit of this first commodity, we must use raw materials, given by the $a$ coefficients of the matrix $A$. But these raw materials themselves must be assembled, and so forth, propagating backward forever. We must satisfy
+\[ \begin{cases}
+	& x_1^1 = a_{11}x_1^1 + a_{12}x_2^1 + \ldots + a_{1m}x_m^1 + 1 \\
+	& x_2^1 = a_{21}x_1^1 + a_{22}x_2^1 + \ldots + a_{2m}x_m^1 + 0 \\
+	& \vdots \\
+	& x_m^1 = a_{m1}x_1^1 + a_{m2}x_2^1 + \ldots + a_{mm}x_m^1 + 0  
+\end{cases} \]
+Note the difference in subscripts on the $a$'s compared to the system of equations for $\lambda$. With $\lambda$, we accumulated. With $x$, we are taking away and making sure we still have enough. $\lambda_1$ is the labor from production of raw material $1$ required to make commodity $1$ plus the labor from the production of raw material $2$ required to make commodity $2$ plus $\ldots$. $x_1^1$, in contrast, we must use $a_{11}x_1^1$ of commodity $1$ in the production of raw material $1$, then use $a_{12}x_2^1$ of commodity $1$ in the production of raw material $2$, etcetera, and then after taking all of that away, still have a full unit left over. In vector form, these equations can be expressed
+\[\vec{x}_1 = A\vec{x}_1 + \vec{e}_1 \]
+Where $\vec{e}_1$ is the first standard basis vector in $\mathbb{R}^m$. If we let 
+ \[ X = \begin{pmatrix} \vec{x}_1 & \vec{x}_2 & \ldots \vec{x}_m \end{pmatrix} \]
+Then all of these can be expressed simultaneously in
+\[ X = AX + I \]
+More generally, if we have some desired net output $\vec{d}$, then the required gross bundle $\vec{x}$ is found by solving the equation
+\[ \vec{x} = A\vec{x} + \vec{d} \]
+Focusing for the moment on $X$ however, note that if $\vec{x}_i$ is the total gross commodity bundle required to produce a net single unit of commodity $i$, then $\vec{l} \cdot \vec{x}_1$ is the gross labor involved in the production of materials for it. Overall we may write
+\[ X^T\vec{l} = \begin{pmatrix} \vec{x}_1^T \\ \vec{x}_2^T \\ \vdots \\ \vec{x}_m^T  \end{pmatrix}\begin{pmatrix} l_1 \\ l_2 \\ \vdots \\ l_m \end{pmatrix}
+ = \begin{pmatrix} \vec{x}_1 \cdot \vec{l} \\ \vec{x}_2 \cdot \vec{l} \\ \vdots \\ \vec{x}_m \cdot \vec{l} \end{pmatrix} := \begin{pmatrix} \mu_1 \\ \mu_2 \\ \vdots \\ \mu_m \end{pmatrix} = \vec{\mu} \]
+Thus we have two very similar vectors, $\vec{\mu}$ and $\vec{\lambda}$. $\vec{\mu}$, the vector of gross labor times required to produce a net unit of each commodity, and $\vec{\lambda}$, the vector of total labor "embodied" in a unit of each commodity. These ought to be the same, and indeed they are. To show this, we have three equations to work with
+\begin{itemize}
+	\item[(1)] $\vec{\lambda} = A^T\vec{\lambda}+\vec{l}$
+	\item[(2)] $\vec{\mu} = X^T\vec{l}$
+	\item[(3)] $X = AX + I$
+\end{itemize}
+Begin by multiplying both sides of the first equation by $X^T$ and regrouping:
+\begin{align*}
+	& X^T\vec{\lambda} = X^TA^T\vec{\lambda} + X^T\vec{l} \\
+	&\implies X^T\vec{\lambda} - X^TA^T\vec{\lambda} = X^T\vec{l} \\
+	&\implies (X^T-X^TA^T)\vec{\lambda} = X^T\vec{l}
+\end{align*}
+However, by the third equation, we have that $X-AX = I$, and so of course $X^T - X^TA^T = I$ as well, replacing the left-hand side with simply $\vec{\lambda}$. On the right hand side, we just have $X^T\vec{l}$, but by equation $1$ this is precisely $\vec{\mu}$. Thus we have that $\vec{\lambda} = \vec{\mu}$. \par 
+Practically speaking, what this shows is that the value of a net product is equal to the total labor of the gross product used to create the net. To see this, let $\vec{d}$ be some net bundle of commodities. As we've seen, the gross bundle $\vec{x}$ satisfies 
+\begin{align*} 
+	& \vec{x} = A\vec{x} + \vec{d} \\
+	&\implies \vec{x} = (I-A)^{-1}\vec{d}
+\end{align*}
+(We will momentarily discuss the assumptions that will be made of $A$, and these will guarantee, among other things, the existence of $(I-A)^{-1}$.) Likewise in general we have by equation $(1)$ above that $\vec{\lambda} = (I-A^T)^{-1}\vec{l}$. The of the net product is then $\vec{l} \cdot \vec{x}$. Substituting $\vec{x}$ for it's solution and simplifying gives:
+\begin{align*}
+	\vec{l} \cdot \vec{x} &= \vec{l}^T(I-A)^{-1}\vec{d} = (((I-A)^{-1})^T\vec{l})^T\vec{d}\\
+		&= ((I-A^T)^{-1}\vec{l})^T\vec{d} = \vec{\lambda}^T \vec{d} \\
+		&= \vec{\lambda} \cdot \vec{d}
+\end{align*}
+So in general we have that if $\vec{d}$ is a net product, and $\vec{x}$ is the gross product used for the creation of the net, then 
+\begin{align}
+	\vec{\lambda}\cdot \vec{d} = \vec{l} \cdot \vec{x}
+\end{align}
+Before continuing further, we should pause and figure out the assumptions that must be made of the matrix $A$ in order to have a meaningful labor theory of value. First, it is obviously the case that $a_{ij} \geq 0$ for all $i,j \leq m$. If this weren't the case, then the second law of thermodynamics would be broken. Second, we assume that $\vec{l}$ has entries which are strictly nonnegative. Having them be strictly positive is obviously stronger, but perhaps not as realistic, and the choice of which to go with will weaken or strengthen the conditions required of $A$. We will consider both cases. However these conditions of nonnegativity are not sufficient to ensure the nonnegativity of the unit value vector $\vec{\lambda}$. For instance, suppose that 
+\[ A = \begin{pmatrix} .5 & .6 \\ .4 & .7 \end{pmatrix} \hspace{2cm} \vec{l} = \begin{pmatrix} .1 \\ .1 \end{pmatrix} \]
+Then it can be seen that we end up with the solution $\vec{\lambda} = \begin{pmatrix} -1 \\ -1 \end{pmatrix}$. What went wrong here? It's difficult to see currently, but the issue will turn out to be that one of these commodity types is not technically feasible to produce; i.e. there is no gross amount of a certain commodity which will be sufficient to produce a single net unit of that commodity. It turns out then that the conditions for $\vec{\lambda}$ to be nonnegative are completely harmless - since they happen only when an economy is completely unfeasible in the first place. \par 
+ Thus we begin by considering the conditions not for $\vec{\lambda}$ to be positive or even nonnegative, but rather the conditions required for a viable economy. To have such a thing it must be the possible for the economy to produce any positive net output from a nonnegative gross input. That is to say, if $\vec{d}$ is a given demand bundle, it needs to be the case that there exists a gross bundle $\vec{x}$ with positive entries such that 
+\[ \vec{x} = A\vec{x} + \vec{d} \]
+If $A$ were a matrix such that this was claim was true, then any fixed $\vec{d}$ with all entries greater than zero, we would have a gross bundle $\vec{x}^0$ which satisfies the above, and in that case it would certainly have to be true that 
+\[ \vec{x}^0 > A\vec{x}^0 \]
+where $>$ here means that every entry of the left-hand vector is greater than the corresponding entry of the right-hand vector. The existence of such an $\vec{x}^0$, without mention of any net demand vector $\vec{d}$, is clearly then a necessary condition for a viable economy. We will call such matrices \textit{productive}.
+\begin{definition}
+	A matrix $A$ is productive if there exists a $\vec{x}^0$ with strictly positive entries such that all entries of $\vec{x}^0$ are greater than those of $A\vec{x}^0$ 
+\end{definition}
+Surprisingly, that $A$ be productive is not just a necessary condition, but also sufficient, as the following characterization theorem:
+\begin{theorem}
+	Suppose $A$ is an $m\times m$ matrix with nonzero entries. Then $A$ is productive if and only if $I-A$ is invertible, and $(I-A)^{-1}$ has only nonnegative entries.
+\end{theorem}
+\begin{proof}
+	We begin with (i) $\implies$ (ii). First, suppose that $A$ is a productive matrix with nonnegative entries, and let $\vec{x}$ be the strictly positive vector witnessing it's productivity, that is, the entries of $\vec{x}$ are greater than those of $A\vec{x}$. Suppose by way of contradiction that $I-A$ is not invertible. Then $dim(Nul(I-A)) > 0$, so there must exist a $\vec{y} \neq \vec{0}$ such that $(I-A)\vec{y} = \vec{0}$. But then $\vec{y} = A\vec{y}$, i.e. $\vec{y}$ is an eigenvector of $A$ with associated eigenvalue $\lambda = 1$. (This isn't really pertinent to the proof, it's just interesting that $I-A$ being invertible is equivalent to saying that $1$ is not an eigenvalue of $A$.) We may assume without loss of generality that at least one of the coordinates for $\vec{y}$ is positive (if that is not the case, simply take $-\vec{y}$). Thus the value $\sup\{\frac{y_i}{x_i}\} = c > 0$. Suppose $k$ is the coordinate which produces this supremum, so $\frac{y_k}{x_k} = c$. Note that
+	\[ c(\vec{x} - A\vec{x})_k = c(x_k-\sum_{i=1}^ma_{ki}x_i) = cx_k - \sum_{i=1}^ma_{ki}cx_i \]
+Also we have that
+	\[cx_k = y_k = (A\vec{y})_k = \sum_{i=1}^m a_{ki}y_i  \]
+Thus 
+\begin{align}
+	c(\vec{x} - A\vec{x})_k = \sum_{i=1}^m a_{ki}(y_i - cx_i) \label{prodCont}
+\end{align} 
+Now we know that the left-hand side of \ref{prodCont} is strictly greater than $0$, by virtue of $\vec{x}$ being positive in all entries, $\vec{x} > A\vec{x}$ and $c > 0$. However, now look at the right-hand side. If $i=k$, then $y_i-cx_i = y_i-y_i = 0$, so that term of the sum is $0$. Otherwise, $i \neq k$. Suppose this is the case and that $y_i - cx_i > 0$. Then 
+\[  y_i > cx_i = \frac{y_k}{x_k}x_i \implies \frac{y_i}{x_i} > \frac{y_k}{x_k} \]
+a contradiction, since $\frac{y_k}{x_k}$ is supposed to be the biggest of these ratios. Thus $y_i - cx_i \leq 0$ for all $i = 1,...,m$, and thus given that all entries of $A$ are nonnegative, the right-hand side must be $\leq 0$. Thus \ref{prodCont} cannot possibly be the case, and we have our contradiction. $I-A$ must thus be invertible. \par 
+Now consider the entries of $(I-A)^{-1}$. We wish to show that these are nonnegative. Suppose it has a negative entry. Then of course this would imply the existence of a strictly positive $\vec{z}$ such that $\vec{y}=(I-A)^{-1}\vec{z}$ has a negative entry as well. This ensures that $\sup\{-\frac{y_i}{x_i}\} = c$ is $> 0$ (with $\vec{x}$ still the same as in the previous part of the proof - the vector witnessing $A$'s positivity). Suppose $k$ is the index witnessing this supremum. Now 
+\[ c(\vec{x} - A\vec{x})_k = c(x_k - \sum_{i=1}^m a_{ki}x_i) = -y_k - \sum_{i=1}^m a_{ki} cx_i \] 
+Now since $\vec{y} = (I-A)^{-1}\vec{z}$, we have that $\vec{z} = (I-A)\vec{y} = \vec{y} - A\vec{y}$, and so 
+\[ z_k = y_k - \sum_{i=1}^m a_{ki} y_i \]
+Adding these leaves us with
+\begin{align}
+	c(\vec{x} - A\vec{x})_k+z_k = -\sum_{k=1}^m a_{ki}(y_i+cx_i) \label{prodCont2}
+\end{align}
+Now considering the right-hand side of \ref{prodCont2} first, fix an $i$ and look at the term $y_i+cx_i$. $c$ and $x_i$ are both greater than $0$, and by definition $-\frac{y_i}{x_i} \leq c \implies -y_i \leq cx_i \implies y_i \geq -cx_i$, so then $y_i+cx_i \geq 0$. This, along with entries of $A$ being nonnegative ensures that the sum here is nonnegative, and thus the right-hand side is necessarily nonpositive. But then we have
+\[ c(\vec{x} - A\vec{x})_k+z_k \leq 0 \implies z_k \leq -c(\vec{x} - A\vec{x})_k \]
+But $c > 0$ and $(\vec{x} - A\vec{x})_k > 0$, so $-c(\vec{x} - A\vec{x})_k < 0$, meaning that $z_k < 0$. But this is a contradiction since $\vec{z}$ was supposed to be strictly positive. Thus $(I-A)^{-1}$ cannot have negative entries. \par 
+Finally, it is near trivial to see that if $(I-A)^{-1}$ exists and has nonnegative entries, then $A$ is productive. Simply let $\vec{y}$ be any strictly positive vector in $\mathbb{R}^m$, and consider $\vec{x}^0 = (I-A)^{-1}\vec{y}$. This obviously must be nonnegative. But then 
+\[ \vec{x}^0 - A\vec{x}^0 = (I-A)\vec{x}^0 = \vec{y} \]
+which was strictly positive by definition. Thus $\vec{x}^0 > A\vec{x}^0$, and we have found our vector witnessing that $A$ is productive. 
+\end{proof}
+\begin{theorem}
+	 If $A$ is productive, then the series $I+A+A^2+A^4 + \ldots$ converges in each entry, and in fact converges to $(I-A)^{-1}$ 
+\end{theorem}
+\begin{proof}
+	Suppose that $A$ is productive, and let $\vec{x}$ be the vector such that $\vec{x} > A\vec{x}$. Then there exists a constant $c \in (0,1)$ such that $c\vec{x} > A\vec{x} \geq \vec{0}$. Multiplying all sides of this by $A$ we obtain $cA\vec{x} > A^2\vec{x} \geq \vec{0}$. But then 
+\[ c(c\vec{x}) > c(A\vec{x}) > A^2\vec{x} \geq \vec{0} \]
+And so we obtain
+\[ c^2\vec{x} > A^2\vec{x} \]
+Multiplying both sides by $A$ again and comparing with $c^3\vec{x}$ yields similarly that $c^3\vec{x} > A^3\vec{x}$, and so forth. Thus we have that for all $n \in \mathbb{N}$, that 
+\[ c^n \vec{x} > A^n\vec{x} \geq \vec{0} \] 
+But of course since $0 < c < 1$, $c^n \to 0$ as $n \to \infty$, and so the limit of $c^n\vec{x}$ is $\vec{0}$. It follows then that $A^n\vec{x}$ must go to $\vec{0}$ as $n \to \infty$. From this we have that $A^n$ converges in each entry. Moreover for any $i \in \{1,...,m\}$, we must have
+\[ \lim_{n\to\infty} a^n_{ij}x_j = 0 \]
+where $a^n_{ij}$ denotes the $i,j$ entry of $A^n$ (not necessarily the $n^{th}$ power of $A^n$). Since all of the entries of $x_j$ are positive, the only way for this equation to hold is for $a^n_{ij} \to 0$ for all $i,j$, as $n \to \infty$. \par 
+To show that the series itself converges to $(I-A)^{-1}$, let $B_n = I+A+A^2+\ldots + A^n$. Multiplying this identity with $A$ gives that $AB_n = A+A^2+A^3 + \ldots + A^{n+1}$. Subtracting the second equation from the first gives
+\begin{align*}
+	& B_n - AB_n = I-A^{n+1} \\
+	&\implies B_n(I-A) = I-A^{n+1} \overset{n}\to I
+\end{align*}
+Thus $\lim_{n\to\infty}B_n = (I-A)^{-1}$. 
+\end{proof}
+The implications of this are very revealing. For any vector of net demand $\vec{d}$, we know that $(I-A)^{-1}\vec{d}$ represents the bundle of gross commodities required to produce $\vec{d}$. Intuitively we would expect that this vector is $\vec{d}$ itself, plus the materials required to make $\vec{d}$, plus the materials required to make the materials required to make $\vec{d}$, plus the materials required to make \emph{those} materials, plus $\ldots$. This amounts to the chain 
+\[ \vec{d} + A\vec{d} + A^2\vec{d} + A^3\vec{d} + \ldots \]
+and we can now see that provided that $\vec{d}$ always has a solution, this is exactly what $(I-A)^{-1}$ represents.  \par 
+With this theorem it follows that the property of being productive is sufficient for any net demand vector to have an associated nonnegative gross bundle, since given a $\vec{d}$, we have that $\vec{x} = (I-A)^{-1}\vec{d}$ not only exists and is unique, but in fact is also strictly nonnegative, since the entries of $(I-A)^{-1}$ and $\vec{d}$ are nonnegative. Of course, we have already seen that $A^T$ is just as valuable as $A$. The following theorem is thus very useful:
+\begin{theorem}
+	The transpose of a productive matrix is productive
+\end{theorem}
+\begin{proof}
+	If $A$ is productive, then $(I-A)^{-1}$ exists and has nonnegative entries. A matrix is invertible if and only if it's transpose is invertible. Thus $(I-A)^T = I-A^T$ is invertible, and in fact we have $(I-A^T)^{-1} = ((I-A)^T)^{-1} = ((I-A)^{-1})^T$. Hence not only is $I-A^T$ invertible, but is is none other than the transpose of $(I-A)^{-1}$. Since this matrix has nonnegative entries, so must it's transpose, and so we now can be sure that $A^T$ is productive. 
+\end{proof}
+Another sufficient condition for productivity is the following:
+\begin{theorem}
+	If the row sums of a nonnegative matrix $A$ are all less than $1$ (row sum meaning the sum of the entries along a row), then the matrix $A$ is productive. Also if the column sums of $A$ are all less than $1$, then $A$ is productive.
+\end{theorem} 
+\begin{proof}
+	Suppose that the row sums are all less than $1$. Let $\vec{x} = \begin{pmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{pmatrix}$. Then $i^{th}$ entry of $A\vec{x}$ is precisely $i^{th}$ row sum. But since the row sums are less than $1$, we have that the entries of $A\vec{x}$ are all smaller than those of $\vec{x}$, and so $A$ is productive. \par 
+	Now suppose that the column sums are all less than $1$. Then by the above it follows that $A^T$ is productive. Thus $(I-A^T)^{-1}$ exists and has strictly nonnegative entries. But $(I-A^T) = (I-A)^T$, and a matrix is invertible iff it's transpose is invertible, so $((I-A)^T)^T = I-A$ is invertible. It follows then that $(I-A^T)^{-1} = ((I-A)^T)^{-1} = ((I-A)^{-1})^T$. Thus the fact that $(I-A^T)^{-1}$ has nonnegative entries means that $((I-A)^{-1})^T$ also has nonnegative entries, and so of course this means that $(I-A)^{-1}$ itself has nonnegative entries. Thus $I-A$ is invertible and the inverse is nonnegative, which we know is equivalent to $A$ being productive. 
+\end{proof}
+ Now we show that a productive consumption matrix is sufficient for $\vec{\lambda}$ to be nonnegative. Suppose we have a productive consumption matrix $A$ and that $\vec{l}$ is nonnegative. Then the vector of values for a unit of each commodity type is given
+ \[ \vec{\lambda} = A^T\vec{\lambda} + \vec{l} \]
+ We know now that if $A$ is productive then so is $A^T$, and equivalently that $(I-A^T)^{-1}$ exists and has nonnegative entries. Thus $\vec{\lambda} = (I-A^T)^{-1}\vec{l}$ is unique, and nonnegative. However simply being nonnegative isn't good enough for our purposes. There is nothing here precluding that $\vec{\lambda} = \vec{0}$, even if $\vec{l}$ itself is nonzero! We will return to this in a moment. \par 
+ Before that however, we should consider one more thing. We have that productivity of the matrix $A$ and nonnegative values for the living labor vector $\vec{l}$ are certainly two of the most minimal of conditions required to have a reasonable capitalist (or socialist, for that matter) economy, and these condition also serve as sufficient conditions for a nonnegative $\vec{\lambda}$. For a capitalist society to be viable however, we also need each industry to be \textit{profitable}. Let $\vec{p} = \begin{pmatrix} p_1 \\ p_1 \\ \vdots \\ p_m  \end{pmatrix}$ be the unit price vector, where $p_i$ denotes the price in "dollars" (whatever the currency denomination of our hypothetical economy) of a single unit of commodity $i$. Consider the price required to produce a unit of commodity $1$. The price of the materials will be
+\[ p_1a_{11} + p_2a_{21} + \ldots + p_ma_{m1} \]
+Which is of course the first coordinate of the vector $A^T\vec{p}$. Also required is living labor in the amount $l_1$. This labor is measured in units of time, say hours. Let us specify a new parameter for the model, the hourly wage rate $w$, which is the price in dollars for an hour of labor, which we will assume is the same for the entire economy. Then the additional cost required in assembling the materials is $wl_1$, the first coordinate of $w\vec{l}$. The vector denoting the cost of production for a unit of each commodity is thus
+\[ A^T\vec{p} + w\vec{l} \]
+Assuming supply and demand are in equilibrium and every product has a customer willing to buy at the standard price, we have then that in order for each commodity industry to profit from production, it must be the case that
+\[ \vec{p} > A^T\vec{p} + w\vec{l} \label{profit} \]
+Suppose this is the case. We will deal with the wage rate later. For now, we are only interested in the necessary conditions for a viable economy independent of anything besides the consumption matrix and living labor vector - the truly technical coefficients of the system. If \ref{profit} is true, then it must be the case that
+\[ \vec{p} > A^T\vec{p} \]
+Thus $\vec{p}$ must witness that $A^T$ is productive. To conclude the discussion of $A$, we have identified productivity as the necessary and sufficient condition both for labor values to be well defined and nonnegative, and for net demand bundles to always be producible by a corresponding gross bundle. It is striking that the same condition is equivalent to both of these. We've also identified productivity of $A$ as a necessary condition for a viable \textit{capitalist} economy, in which every industry can profit simultaneously. Necessary, but not sufficient, as we will see later. \par 
+Unfortunately, one more condition must be added to the matrix $A$ to ensure a positive $\vec{\lambda}$, unless we are willing to restrict the scope of our to commodity types which require positive amounts of living labor. With the knowledge that a matrix is productive if and only if it's transpose is productive, we can now identify the problem in a more general sense; it is now the case that for a nonnegative $\vec{l}$, ensuring $\vec{\lambda}$ positive is equivalent to ensuring that the solution to $\vec{x} = A\vec{x} + \vec{d}$ is \textit{always} positive, as long as $\vec{d}$ is nonnegative. \par
+In terms of having a minimal set of assumptions for our model, this condition is absurd, since it would imply that every industry requires positive input from every other industry in order to produce, and a car making factory probably doesn't need any toothbrushes to assemble a car. To express the \emph{minimal} condition for a positive $\vec{\lambda}$ is going to require us to divide up our economy into at least two departments - a capital goods industry and a wage goods industry, and apply a condition only to the former. Before this, however, we find the property generally for $A$. \par 
+Partition the industries $(1,2,...,m)$ into two groups, $(g_1,g_2,...,g_k)$, and $(g_{k+1},g_{k+2},\ldots,g_m)$. If either of these groups is able to produce it's commodities without any input from the other group, then we call it an independent subgroup. The overall set of industries $(1,2,...,m)$ is said to be \textbf{irreducible}, or \textbf{indecomposable}, if there are no independent subgroups. This is the condition on industry that we are looking for, and we want to express it as a property of the matrix $A$. Suppose we arbitrarily partitioned $A$ into a block matrix representation
+\[ A = \begin{pmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{pmatrix} \]
+with $A_{11}$ and $A_{22}$ being square. Suppose industries are irreducible, and consider a desired strictly positive output vector $\vec{d} = \begin{pmatrix} \vec{d}_1 \\ \vec{d}_2 \end{pmatrix} > 0$.  If $\vec{x}_2$ is positive, then irreducibility of industries would require that the second subindustry requires input from the first to produce the net output of $\vec{x}_2$ - therefore we must have $A_{21}\vec{x}_1 \neq \vec{0}$, i.e. it cannot be the case that $A_{21}$ is entirely $0$. Furthermore it cannot be the case that this corner submatrix is $0$ however we choose to permute the industries. A rearrangement of industries amounts to a change of basis which switches out coordinate locations, which can be accomplished by conjugation by a permutation matrix $P$. This is how we arrive at the following definition:
+\begin{definition}
+	A matrix $A$ is \textbf{irreducible} if, for any permutation matrix of matching dimension $P$, it is never the case that
+	\[ P^TAP = \begin{pmatrix} A'_{11} & A'_{12} \\ O & A'_{21} \end{pmatrix} \]
+where $0$ denotes a $0$ matrix of some dimension, and $A'_{11}$ and $A_{22}$ are square. 
+\end{definition}
+Other equivalent definitions of irreducibility exist, including a more rigorous formulation of the claim made about industries. One of the more interesting ones involves a statement about the directed graph associated with $A$, $G(A)$. This is the graph which has $m$ nodes (where $A$ is $m\times m$, and there exists a edge from node $i$ to node $j$ iff $a_{ij} > 0$. We say that a directed graph is \emph{strongly connected} if for any two nodes, there exists a finite path (i.e. a sequence of edged) from $i$ to $j$.
+\begin{theorem}
+	The following are equivalent:
+	\begin{itemize}
+		\item[(i)] $A$ is irreducible.
+		\item[(ii)] The graph $G(A)$ is strongly connected.
+		\item[(iii)] For any specification of a nondiagonal entry of dimension compatible with $A$ $(i,j)$, there exists a power $n$ such that the $i,j$ entry of $A^n$ is positive.
+		\item[(iv)] There is no subspace of $\mathbb{R}^m$ spanned by a proper subset of the standard basis vectors which is closed under multiplication by $A$.  
+	\end{itemize} 
+\end{theorem}
+\begin{proof}
+	To do. 
+\end{proof}
+\begin{fact}
+	$A$ is irreducible if and only if $A^T$ is irreducible.
+\end{fact}
+\begin{proof}
+	To do.
+\end{proof}
+The following theorem confirms that this property is what we are looking for:
+\begin{theorem}
+	Let $A$ be a nonnegative matrix. Then the following are equivalent:
+	\begin{itemize}	
+		\item[(i)] For any nonnegative nonzero vector $\vec{d}$, the equation $\vec{x} = A\vec{x}+\vec{d}$ has a positive solution.
+		\item[(ii)] The matrix $(I-A)^{-1}$ exists and is strictly positive. 
+		\item[(iii)] The matrix $A$ is productive and irreducible. 
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	For (i) $\implies$ (ii), assume (i), and let $\vec{d}$ be a strictly positive vector. Then by hypothesis there exists a strictly positive solution $\vec{x}$ such that $\vec{x} = A\vec{x} + \vec{d}$. But then of course this implies immediately that $\vec{x} > A\vec{x}$, demonstrating that $A$ is productive. It follows that $(I-A)^{-1}$ exists. We must show next that it is positive. Fix a column $i$, and fix $\vec{d} = \vec{e}_i$. The solution $\vec{x}_i$ for this is then given by $\vec{x}_i = (I-A)^{-1}\vec{e}_i$. But this is precisely the $i^{th}$ column of $(I-A)^{-1}$, and so by identity with our strictly positive $\vec{x}_i$ we have that the column is strictly positive. \par 
+	(ii) $\implies$ (i) is nearly trivial. Suppose $(I-A)^{-1}$ is strictly positive and denote the entries $b_{ij}$. Consider $\vec{d}$ an arbitrary nonnegative and nonzero vector. Then $\vec{x} = A\vec{x} + \vec{d} \implies \vec{x} = (I-A)^{-1}\vec{d}$ is the unique solution for $\vec{x}$. Note that for a fixed $i$, we have
+	\[ x_i = \sum_{j=1}^m b_{ij}d_j \]
+But presuming that $\vec{d}$ is positive for at least one entry, this sum is positive. Thus $\vec{x}$ is strictly positive. \par 
+For (ii) $\implies$ (iii), if $(I-A)^{-1}$ exists and is positive, then $A$ is automatically productive. Furthermore we know this means specifically that
+\[ (I-A)^{-1} = \lim_{n \to \infty} \sum_{k=0}^n A^k \]
+But if $(I-A)^{-1}$ is positive then from the above identity it eventually has to be the case that any entry of these partial sums must eventually become positive, meaning that for any $i,j$ there exists an $n$ such that $(A^n)_{ij} > 0$. But by our above lemma this means that $A$ is irreducible. \par 
+Finally we show that (iii) $\implies$ (ii), completing a chain. Suppose that $A$ is productive and irreducible. Then productivity implies that $(I-A)^{-1} = I+A+A^2+\ldots$ exists and is nonnegative, and furthermore irreducibility implies that for any $i \neq j$, $(A^n)_{ij}$ is eventually positive, from which it follows that $((I-A)^{-1})_{ij}$ is positive. Since the diagonal entries are automatically positive from $I$ in the summand, it follows that $(I-A)^{-1}$ is positive in all entries. 
+\end{proof}
+From this it follows that $A$ being productive and irreducible is sufficient for $\vec{\lambda}$ to be strictly positive, even if $\vec{l}$ is $0$ for some industries. However this is a very strong condition on $A$ and should be weakened for a more realistic model. We can weaken the condition by splitting the economy into two subeconomies. Let the first $n$ many industries denote the \textbf{capital goods} industries, while the remaining $m-n$ industries will denote the \textbf{wage goods} industries (which can include luxury goods). Capital goods are those goods which are not consumed at all by workers of capitalists - they are only used for the production of goods, either capital or wage. Wage goods, meanwhile, are \emph{never} needed for the production of \emph{any} commodity. That is to say
+\[ \forall i > n (a_{ij} = 0) \]
+Thus the final $m-n$ rows of the matrix $A$ are assumed to be zero rows. 
+
+ Wage goods are defined as such by having the property that they are strictly for consumption and not for production. This means that for any $j$, we will have $a_{ij} = 0$ for all $i>n$. We can then split our matrix $A$ into the block matrix
+\[ A = \begin{pmatrix} A_1 & A_2 \\ O_1 & O_2 \end{pmatrix} \]
+where
+\[ A_1 = \begin{pmatrix} a_{11} & a_{12} & \ldots & a_{1n} \\
+			a_{21} & a_{22} & \ldots & a_{2n} \\
+			\vdots \\ a_{n1} & a_{n2} & \ldots & a_{nn} \end{pmatrix} \hspace{2cm} A_2 = \begin{pmatrix} a_{1(n+1)} & a_{1(n+2)} & \ldots & a_{1m} \\
+			a_{2(n+1)} & a_{2(n+2)} & \ldots & a_{2m} \\
+			\vdots \\ a_{n(n+1)} & a_{n(n+2)} & \ldots & a_{nm} \end{pmatrix} \]
+with $O_1$ and $O_2$ being the $(m-n)\times n$ and $(m-n) \times (m-n)$ $0$ matrices respectively. This great divide also splits our value and living labor vectors into the block forms:
+ \[ \vec{\lambda}_1 = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ \vdots \\ \lambda_n \end{pmatrix} \hspace{2cm} \vec{\lambda}_2  = \begin{pmatrix} \lambda_{n+1} \\ \lambda_{n+2} \\ \vdots \\ \lambda_m \end{pmatrix} \hspace{2cm} \vec{l}_1  = \begin{pmatrix} l_1 \\ l_2 \\ \vdots \\ l_n \end{pmatrix} \hspace{2cm} \vec{l}_2  = \begin{pmatrix} l_{n+1} \\ l_{n+2} \\ \vdots \\ l_m \end{pmatrix} \]
+So that 
+\[ \vec{\lambda} = \begin{pmatrix} \vec{\lambda}_1 \\ \vec{\lambda}_2 \end{pmatrix}  \hspace{2cm} \vec{l} = \begin{pmatrix} \vec{l}_1 \\ \vec{l}_2 \end{pmatrix} \]
+The right side of the determining equation $\vec{\lambda} = A^T\vec{\lambda}+\vec{l}$ then disaggregates to
+\begin{align*}
+	\begin{pmatrix} A_1^T & O_1^T \\ A_2^T & O^T_2 \end{pmatrix} \begin{pmatrix} \vec{\lambda_1} \\ \vec{\lambda_2} \end{pmatrix} + \begin{pmatrix} \vec{l}_1 \\ \vec{l_2} \end{pmatrix} = \begin{pmatrix} A_1\vec{\lambda}_1 +\vec{l}_1 \\ A_2^T\vec{\lambda}_1 + \vec{l}_2 \end{pmatrix}
+\end{align*} 
+So that our single value determining equation becomes equivalent to the two equation system
+\[ \vec{\lambda}_1 = A^T_1\vec{\lambda}_1+\vec{l}_1 \]
+\[ \vec{\lambda}_2 = A^T_2\vec{\lambda}_1+\vec{l}_2 \]
+The unit price vector also disaggregates:
+\[ \vec{p} = \begin{pmatrix} \vec{p}_1 \\ \vec{p}_2 \end{pmatrix} \]
+so that the condition for profit, that $\vec{p} > A^T\vec{p}+w\vec{l}$, also disaggregates. Just like before, the right hand side becomes
+\[ \begin{pmatrix} A_1^T & O^T_1 \\ A_2^T & O^T_2  \end{pmatrix} \begin{pmatrix} \vec{p}_1 \\ \vec{p}_2 \end{pmatrix} + \begin{pmatrix} w\vec{l}_1 \\ w\vec{l}_2 \end{pmatrix} = \begin{pmatrix} A_1^T\vec{p}_1 + w\vec{l}_1 \\ A_2^T\vec{p}_1 + w\vec{l}_2 \end{pmatrix} \]
+so that we are left equivalently with the two sets of conditions
+\[  \vec{p}_1 > A_1^T\vec{p}_1 + w\vec{l}_1 \]
+\[  \vec{p}_2 > A_2^T\vec{p}_1 + w\vec{l}_2 \]
+Obviously we must keep the condition that both matrices $A_1$ and $A_2$ are non-negative, along with non-negativity for both $\vec{l}_1$ and $\vec{l}_2$. Assume for a moment though that \emph{only} $A_1$ is productive. Then $\vec{\lambda}_1$ can be solved for, and written uniquely as $\vec{\lambda}_1 = (I-A_1^T)^{-1}\vec{l}_1$, and this solution can be plugged into the second equation to derive $\vec{\lambda}_2$, giving us the unique solution
+\[ \vec{\lambda}_1 = (I-A_1^T)^{-1}\vec{l}_1 \]
+\[ \vec{\lambda}_2 = A_2^T(I-A_1^T)^{-1}\vec{l}_1 + \vec{l}_2 \]
+(Verifying dimensionality, note that $(I-A_1^T)^{-1}\vec{l}_1$ is $n\times 1$, and $A_2^T$ is $(m-n) \times n$, so that the product is $(m-n)\times 1$, compatible with addition of $\vec{l}_2$.) Clearly productivity for $A_1$ gives us that $\vec{\lambda}_1$ is non-negative and unique, as well as a unique solution for $\vec{\lambda}_2$. It is also clear from this that $\vec{\lambda}_2$ is non-negative here as well. \emph{Thus, the assumption of productivity for $A$ only actually needs to be assumed for $A_1$.} We can immediately also see from our characterization theorem for irreducible and productive matrices that if just $A_1$ is productive and irreducible, then $\vec{\lambda}_1$ is strictly positive, but still not quite good enough to ensure $\vec{\lambda}_2$ is positive. Fix an $i$, and consider the solution for the $i^{th}$ entry of $\vec{\lambda}_2$:
+\[ \lambda^2_i = \sum_{j=1}^n a^2_{ij}\lambda^1_j + l^2_i \]
+Thus for this term to be ensured positive, we must have that \emph{either} $a^2_{ij} > 0$ for some $j$, \emph{or} that $l_i > 0$. This condition can be condensed in matrix form to the condition that $\begin{pmatrix} A^T_2 \\ \vec{l}_2^T \end{pmatrix}$ has no column of entirely $0$'s, or equivalently that $\begin{pmatrix} A_2 & \vec{l}_2 \end{pmatrix}$ has no row of entirely $0$'s. Thus the true minimal conditions which must be made for a meaningful labor theory of value is the following:
+\begin{itemize}
+	\item[(1)] $A_1$, $A_2$, $\vec{l}_1$, and $\vec{l}_2$ are non-negative.
+	\item[(2)] $A_1$ is productive and irreducible
+	\item[(3)] The matrix $\begin{pmatrix} A_2 & \vec{l}_2 \end{pmatrix}$ has no $0$ rows.
+\end{itemize} 
+Because Morishima wants to stick to these minimal conditions, his entire model is developed with this two department breakdown. This leads to a lot of unclear and overly complicated formulas however. Thus for the sake of having simpler formulas, we will for time being we will stick to a single sector economy with no distinction between wage and capital goods, and in this setting we will simply assume that the entire matrix $A$ is non-negative, productive, and irreducible. We will however also periodically return to this more granular formulation when it is appropriate.
+\par Before finally moving on, there is a theorem about positive matrices, some of whose results can be extended to nonnegative irreducible matrices, which will be extremely important later on.
+\begin{theorem}[Perron-Frobenius Theorem]
+	The actual theorem is pretty long and has a lot of details that we don't care about. I'll only state the parts that matter to this theory. Let $A$ be either a positive matrix, or a nonnegative irreducible matrix. Then there exists a positive eigenvalue equal to the spectral radius of $A$ (that is, the maximum magnitude out of all of the eigenvalues of $A$), which has an associated eigenvector $\vec{x}$, all of whose entries are positive. Furthermore the eigenspace associated with this eigenvalue is one dimensional; Any other eigenvector of associated with this largest eigenvalue is a scalar multiple of $\vec{x}$. Finally, the \emph{only} other strictly positive eigenvectors of $A$ are the ones in this one-dimensional eigenspace. 
+\end{theorem}
+\subsection{Exploitation}
+In order to define exploitation, the critical ingredient for Morishima is the means of subsistence. This is a bundle of goods $\vec{b} = \begin{pmatrix} b_1 \\ \vdots \\ b_m \end{pmatrix}$ representing the amount of each commodity that a worker needs to consume each day to reproduce their labor power for the next day. The assumption of such a thing is in some sense definite and rigorous, and in another sense nonsensical. The former, in that there \textit{does} exist an average consumption of each commodity across all workers. The latter, in the sense that the variance of this consumption will vary wildly across those workers. Nonetheless, it establishes a baseline for what workers can be paid - a \textit{real} minimum wage. Note that in the context of an economy divided into capital and wage goods sectors, we have 
+\[ \begin{pmatrix} \vec{0} \\ \vec{b}_2 \end{pmatrix} \] \par
+Since workers do not consume any capital goods by our definition of them. Suppose a worker is paid precisely enough money to purchase the bundle $\vec{b}$, and in exchange for this labor they work for $T$ hours a day. The bundle has a labor value, given by $\vec{\lambda} \cdot \vec{b}$. Let $\omega = \frac{1}{T}$. Then each hour, the worker will receive pay equal to this fraction of the means of subsistence, which has value $\omega \vec{\lambda}\cdot \vec{b}$. The difference $1-\omega\vec{\lambda}\cdot \vec{b}$ then, represents the amount of each hour that the worker offers as tribute to the capitalist without compensation. The rate of exploitation can then be defined
+\[ e = \frac{1-\omega\vec{\lambda}\cdot \vec{b}}{\omega\vec{\lambda}\cdot \vec{b}} \]   
+that is, the ratio of "unpaid to paid labor", for a worker laboring at the minimal standards of society. Note that despite this rate clearly being a global one, a descriptor of society as a whole, it is defined in terms of an individual. Moreover this individual likely does not even exist, as the average bundle consumed daily by a worker varies wildly from person to person, so much so that the average is likely to apply to nobody at all. The rate can be derived in two other ways. \par 
+For the first such identity, let $\bar{N}$ be the total number of workers. Thus, each day, $\bar{N}\vec{b}$ is the total bundle of commodities that needs to be produced in a stable system. We can imagine each worker producing their respective portion of this number, as we did above, but just as easily we can imaging a portion of these workers, $N < \bar{N}$, that produces just this bundle, and the other workers producing the surplus. The $N$ "necessary" workers do a collective $TN$ hours of labor, while the number of total hours worked by everyone is $T\bar{N}$. $T\bar{N} - TN$ is thus the total surplus, and we can define another rate of exploitation as the ratio of this surplus labor to the total:
+\[ e^* = \frac{T\bar{N} - TN}{T\bar{N}} = \frac{\bar{N} - N}{\bar{N}} \]
+We can show that this is in fact an identity for $e$. To see this, note that the total value of the bundle $\bar{N}\vec{b}$ is $\vec{\lambda} \cdot \bar{N}\vec{b}$. If this is to be produced entirely by the $N$ necessary workers, then we have the equilibrium condition
+\[ TN = \vec{\lambda} \cdot \bar{N}\vec{b} \]
+Plugging this into our rate above yields
+\begin{align*}
+	 \frac{T\bar{N} - TN}{T\bar{N}} &=  \frac{T\bar{N} - \vec{\lambda} \cdot \bar{N}\vec{b}}{\vec{\lambda} \cdot \bar{N}\vec{b}} \\
+	 &= \frac{T - \vec{\lambda} \cdot \vec{b}}{\vec{\lambda} \cdot \vec{b}} \\
+	 &= \frac{1 - \omega \vec{\lambda} \cdot \vec{b}}{\omega\vec{\lambda}\cdot \vec{b}} = e
+\end{align*}
+Neither of these notions of the rate of exploitation directly relate to Marx's own classic formulation of the rate of exploitation which he defined as the ratio $\frac{S}{V}$, where $S$ is the total surplus value produced, and $V$ is the total value of variable capital. Do define this, we must bring in and derive the classic value quantities $S$, $C$, and $V$. \par 
+Let $\vec{x}$ denote the total daily gross output of society. Since there are $\bar{N}$ workers, each working $T$ hours at the same quality of labor, we have that the total value produced in a day is $T\bar{N}$, establishing the condition
+\begin{align}
+	T\bar{N} = \vec{l}\cdot \vec{x}
+\end{align}
+(Recall since $\vec{x}$ is the gross output and not the net, $\vec{\lambda}\cdot \vec{x}$ would not be the total value - it would overshoot the actual value produced and be bigger.)
+The surplus obviously needs to be the vector $\vec{x}$ minus whatever is necessary. Two bundles will be necessary for a system in equilibrium. On the one hand, the bundle $\bar{N}\vec{b}$, necessary for each worker to produce their subsistence. This bundle is in fact the variable capital in goods. Thus the value of this bundle is exactly what Marx denoted $V$:
+\[ V = \vec{\lambda} \cdot \bar{N}\vec{b} \]  
+Also necessary is the constant capital $C$. These are the materials necessary for producing the bundle $\vec{x}$, which is precisely $A\vec{x}$. Thus
+\[ C = \vec{\lambda} \cdot A\vec{x} \]
+From the standpoint of system which perfectly reproduces itself daily, we must assume that $A\vec{x}$ exists on day $0$. This is used up to produce $\vec{x}$, which must include a copy of $A\vec{x}$, to be used the next day. Thus the bundle of surplus goods is given $\vec{x} - (A\vec{x} + \bar{N}\vec{b})$, and the total surplus value is
+\[ S = \vec{\lambda}\cdot [\vec{x} - (A\vec{x} + \bar{N}\vec{b})] \]
+The rate of surplus value is then
+\[ s' = \frac{S}{V} = \frac{\vec{\lambda}\cdot [\vec{y} - (A\vec{y} + \bar{N}\vec{b})]}{\vec{\lambda} \cdot \bar{N}\vec{b}} \] 
+It is obviously critical that we show this to be equal to the rate of exploitation $e$. To do this we need to be a little sneaky. First, we come up with an equation for $1$ involving $e$ as we know it:
+\begin{align*}
+	& e = \frac{1-\omega\vec{\lambda}\cdot \vec{b}}{\omega\vec{\lambda}\cdot \vec{b}}\\
+	&\implies (1+e)(\omega\vec{\lambda}\cdot \vec{b}) = 1
+\end{align*}
+We will slip this into the value determination equation
+\begin{align*}
+	\vec{\lambda} &= A^T\vec{\lambda} + \vec{l} \\
+	&= A^T\vec{\lambda} + (1+e)(\omega\vec{\lambda}\cdot \vec{b})\vec{l} \\
+	&= A^T\vec{\lambda} + \omega(\vec{\lambda}\cdot\vec{b})\vec{l} + e\omega(\vec{\lambda}\cdot\vec{b})\vec{l} \\
+\end{align*}
+This equation for $\vec{\lambda}$ will be important to look at on it's own in a moment, but for now what is important is that we have the identity
+\[ e\omega(\vec{\lambda}\cdot\vec{b})\vec{l} = \vec{\lambda} - A^T\vec{\lambda} - \omega(\vec{\lambda}\cdot\vec{b})\vec{l} \]
+Now, for the denominator of $s'$, since $T\bar{N} = \vec{l}\cdot \vec{x}$, we have that $\bar{N} = \omega (\vec{l} \cdot \vec{x})$, so that 
+\[ V = \vec{\lambda} \cdot \bar{N}\vec{b} = \omega (\vec{l} \cdot \vec{x})(\vec{\lambda} \cdot \vec{b}) \]
+For the numerator:
+\begin{align*}
+	S = \vec{\lambda}\cdot [\vec{x} - (A\vec{x} + \bar{N}\vec{b})] &= \vec{\lambda}^T\vec{x} - \vec{\lambda}^T A\vec{x} - \vec{\lambda}\cdot \bar{N} \vec{b} \\
+	&= \vec{\lambda}^T\vec{x} - \vec{\lambda}^T A\vec{x} - \omega (\vec{\lambda} \cdot \vec{b})(\vec{l} \cdot \vec{x}) \\
+	&= \vec{\lambda}^T\vec{x} - \vec{\lambda}^T A\vec{x} - \omega (\vec{\lambda} \cdot \vec{b})\vec{l}^T\vec{x} \\
+	&= (\vec{\lambda}^T - \vec{\lambda}^T A - \omega (\vec{\lambda} \cdot \vec{b})\vec{l}^T)\vec{x} \\
+	&= (\vec{\lambda} - A^T\vec{\lambda} - \omega(\vec{\lambda}\cdot \vec{b})\vec{l})^T\vec{x} \\
+	&= (e\omega(\vec{\lambda}\cdot\vec{b})\vec{l})^T\vec{x} \\
+	&= e[\omega(\vec{\lambda} \cdot \vec{b})(\vec{l}\cdot \vec{x})]
+\end{align*}
+Therefore we have
+\begin{align*} 
+s' = \frac{e[\omega(\vec{\lambda} \cdot \vec{b})(\vec{l}\cdot \vec{x})]}{\omega (\vec{l} \cdot \vec{x})(\vec{\lambda} \cdot \vec{b})} = e
+\end{align*}
+Consider the equation for $\vec{\lambda}$ derived during this process:
+\[ \vec{\lambda} = A^T\vec{\lambda} + \omega(\vec{\lambda}\cdot\vec{b})\vec{l} + e\omega(\vec{\lambda}\cdot\vec{b})\vec{l} \]
+Remember that the entries of $\vec{\lambda}$ refer to the "unit values" of each commodity. Originally, we have $\vec{\lambda} = A^T\vec{\lambda} + \vec{l}$, where $A^T\vec{\lambda}$ we say referred to the "dead labor" or constant capital required, and $\vec{l}$ was the living labor. What we've done with this equation then is split the living labor $\vec{l}$ into two components: the living labor which is "paid for", and the surplus labor. It is thus perfectly reasonable for a particular commodity industry $i$, to see $(A^T\vec{\lambda})_i = c_i$, $(\omega(\vec{\lambda}\cdot\vec{b})\vec{l})_i = v_i$, and $e\omega(\vec{\lambda}\cdot\vec{b})\vec{l})_i = s_i$, so that
+\[ \lambda_i = c_i + v_i + s_i \]
+This allows us to define individual rates of exploitation for each individual industry, via $e_i = \frac{s_i}{v_i}$. However for every industry $e_i = e$, since $v_i$ and $s_i$ is scalar multiples of each other. Thus the rate of exploitation in this economy is equalized across all industries. \par 
+We saw that the global surplus was $S = e[\omega(\vec{\lambda} \cdot \vec{b})(\vec{l}\cdot \vec{x})]$. If we have a bundle of goods $\vec{y}$, it's value is $\vec{\lambda} \cdot \vec{y}$, which we can now see as 
+\begin{align*}
+	& (A^T\vec{\lambda} + \omega(\vec{\lambda}\cdot\vec{b})\vec{l} + e\omega(\vec{\lambda}\cdot\vec{b})\vec{l})^T\vec{y}  \\
+	&= (A^T\vec{\lambda})\cdot\vec{y} + (\omega(\vec{\lambda}\cdot\vec{b})\vec{l})\cdot \vec{y} + (e\omega(\vec{\lambda}\cdot\vec{b})\vec{l})\cdot\vec{y} \\
+	&= \vec{c} \cdot \vec{y} + \vec{v}\cdot \vec{y} + \vec{s}\cdot \vec{y}
+\end{align*}
+Thus breaking the labor value of $\vec{y}$ its constant, variable, and surplus capital components. Furthermore,if $\vec{y}$ is the total gross bundle of goods produced in a day, then we clearly have the identities
+\[ V = \vec{v} \cdot \vec{y} \hspace{2cm} C = \vec{c}\cdot \vec{y} \hspace{2cm} S = \vec{s}\cdot \vec{y} \]  
+Next we bring in prices, and consider profits. Recall $\vec{p} = \begin{pmatrix} p_1 \\ p_2 \\ \vdots \\ p_m \end{pmatrix}$ is the vector representing the price of a single unit of each commodity type, denominated in some dollar measure. Assume that the \textbf{wage rate} $w$ is the hourly price that the worker is paid. We are assuming that the worker is always able to purchase their subsistence basket. So the hourly wage rate is at least enough to purchase the basket $\omega \vec{b}$, and the price of this basket is $\vec{p} \cdot \omega \vec{b}$. Thus it must be the case that
+\begin{align}
+	w \geq \vec{p} \cdot \omega \vec{b}  \label{suffWages}
+\end{align} 
+ Recall also that in order for every capitalist industry to profit simultaneously, we must have 
+ \[ \vec{p} > A^T\vec{p} + w\vec{l} \]
+where $>$ here means that all of the coordinates of the left-hand side are greater than those of the right-hand side. We can now show that exploitation is a necessary condition for this to be the case. Before doing this we summarize the model at it's base, and our basic assumptions about it: \par 
+
+\textbf{Summary of the model and it's base assumptions:} 
+ Assume that an economy is in daily equilibrium with fixed and unchanging unit prices for all commodities, along with fixed and unchanging methods of production (thus fixing the $a_{ij}$ of the matrix $A$). Assume that the matrix $A$ is productive. Assume in this economy that a collection of $\bar{N}$ workers sell their labor for an hourly wage rate $w$, all labor for $T$ hours per day, and all produce labor of the same quality so that an hour of labor from one worker is identical to an hour of labor from any other worker, justifying the existence of standard fixed and unchanging living labor values for all commodities when paired with the assumption of unchanging methods of production. Call this vector $\vec{l}$, and assume that all entries of it are positive. Assume the existence of an average daily bundle of goods $\vec{b}$ meeting the minimum requirements of reproducing labor power for the average lifespan of a worker, and assume that the hourly wage rate is at least sufficient to purchasing this bundle (ie $w \geq \vec{p} \cdot \omega\vec{b}$). Note that no assumptions have been made yet about $\vec{p}$ or $w$, aside from $w$ needing to be sufficient to purchase means of subsistence. The question at hand is whether a vector of unit prices exists in which all industries can profit simultaneously 
+\begin{theorem}[Fundamental Marxian Theorem]
+	Given the above model, there exists a vector of prices $\vec{p}$ and a wage rate $w$ such that all industries can profit simultaneously, if and only if the rate of exploitation $e > 0$.
+\end{theorem}
+\begin{proof}
+	For the forward direction, assume we have fixed a unit price vector $\vec{p}$ and a wage rate $w$ such that all industries can simultaneously profit. Substituting \ref{suffWages} for $w$ in this condition, we have
+\begin{align*}
+	\vec{p} > A^T\vec{p} + (\vec{p}\cdot \omega \vec{b})\vec{l} \label{profitability} 
+\end{align*} 
+Note that 
+\[ (\vec{p} \cdot \omega \vec{b}) \vec{l} = \omega (\vec{b}^T \vec{p})\vec{l} = (\omega \vec{l} \vec{b}^T)\vec{p} \]
+Thus the right-hand side of the inequality above can be seen as the result of a linear transformation on $\vec{p}$, specifically it equals $(A^T + \omega \vec{l} \vec{b}^T)\vec{p}$. One can immediately see then that the claim of all industries simultaneously profiting is equivalent to the claim that this linear transformation is productive. Since the transpose of a productive matrix is productive, we therefore have that $A+\omega\vec{b}\vec{l}^T$ must be productive, so there exists a vector $\vec{x}$ with strictly positive entries such that all entries of $\vec{x}$ are greater than all entries of $A\vec{x} + \omega\vec{b}\vec{l}^T\vec{x}$. Thus the dot product $\vec{\lambda}\cdot\vec{x}$ must be greater than $\vec{\lambda}\cdot (A\vec{x} + \omega\vec{b}\vec{l}^T\vec{x})$. Rewriting this second dot product:
+\begin{align*}
+	\vec{\lambda}\cdot (A\vec{x} + \omega\vec{b}\vec{l}^T\vec{x}) &= \vec{\lambda}\cdot A\vec{x} + \omega\vec{\lambda} \cdot (\vec{b}\vec{l}^T\vec{x}) \\
+	&= (A^T\vec{\lambda})\cdot \vec{x} + \omega[\vec{\lambda}^T(\vec{b}\vec{l}^T)\vec{x}] \\
+	&= (A^T\vec{\lambda})\cdot \vec{x} + \omega[(\vec{\lambda}^T\vec{b})(\vec{l}^T\vec{x})] \\
+	&= (A^T\vec{\lambda})\cdot \vec{x} + (\omega(\vec{\lambda}\cdot\vec{b})\vec{l})\cdot\vec{x}
+\end{align*}
+As we said, $\vec{\lambda}\cdot\vec{x}$ is greater than this, and so
+\begin{align*}
+	& \vec{\lambda}\cdot\vec{x} - (A^T\vec{\lambda})\cdot \vec{x} - (\omega(\vec{\lambda}\cdot\vec{b})\vec{l})\cdot\vec{x} > 0 \\
+	&\implies [\vec{\lambda} - A^T\vec{\lambda} - \omega(\vec{\lambda}\cdot\vec{b})\vec{l})]\cdot\vec{x} > 0
+\end{align*} 
+But recall that 
+\begin{align*}
+ \vec{s} = \vec{\lambda} - (\vec{c}+\vec{v}) \implies e\omega(\vec{\lambda}\cdot\vec{b})\vec{l} = \vec{\lambda} - A^T\vec{\lambda} - \omega(\vec{\lambda}\cdot\vec{b})\vec{l}
+ \end{align*}
+and this is precisely what is in the brackets above. Thus we have
+\begin{align*}
+	& (e\omega(\vec{\lambda}\cdot\vec{b})\vec{l})\cdot\vec{x} > 0 \\
+	&\implies e[\omega(\vec{\lambda}\cdot\vec{b})(\vec{l}\cdot\vec{x})] > 0
+\end{align*}
+Since the entries of $\vec{x}$ and $\vec{l}$ are strictly positive, that dot product is positive, as is the dot product $\vec{\lambda} \cdot \vec{b}$, as was shown earlier by virtue of $A$ being productive. Thus the term in brackets is a number greater than $0$, and so it must follow that $e > 0$ as well. \par 
+Conversely, suppose that $e > 0$. Again let us consider the equation for $\vec{\lambda}$:
+\[ \vec{\lambda} = \vec{c} + \vec{v} + \vec{s} = A^T\vec{\lambda} + \omega(\vec{\lambda}\cdot\vec{b})\vec{l} + e\omega(\vec{\lambda}\cdot\vec{b})\vec{l} \]
+Since $\vec{l}$ is assumed positive and $A$ assumed productive, $\omega(\vec{\lambda}\cdot\vec{b})\vec{l}$ is greater than $0$ in all entries. Since $e > 0$ by hypothesis, we can conclude that the third term $\vec{s}$ itself is positive in all entries, and so we have
+\[ \vec{\lambda} > A^T\vec{\lambda} + \omega(\vec{\lambda}\cdot\vec{b})\vec{l} \]
+Let $\psi > 0$, and define $\vec{p} := \psi\vec{\lambda}$, and $w := \vec{p}\cdot \omega\vec{b} = \psi\omega(\vec{\lambda}\cdot\vec{b})$. Then clearly our system is able to reproduce it's workforce daily (minimally), and in fact 
+\begin{align*}
+	A^T\vec{p} + w\vec{l} &= A^T\psi\vec{\lambda} + \psi\omega(\vec{\lambda}\cdot\vec{b})\vec{l} \\
+	&= \psi(A^T\vec{\lambda} + \omega(\vec{\lambda}\cdot\vec{b})\vec{l}) \\
+	&< \psi\vec{\lambda} = \vec{p}
+\end{align*}
+Thus, all industries are profiting simultaneously, by simply setting unit prices as proportional to unit values. 
+\end{proof}
+Note here that we have found a set of prices and wages that produce profits for all industries by setting profits as proportional to values, but we did \textit{not} show that doing so is the only way in which all industries can profit. Nonetheless, we have shown that exploitation is in some sense the source of profits, in that, under the assumptions above, exploitation is a necessary and sufficient condition for profits. \par 
+\subsection{Profit}
+Recall that the vector of unit prices of production is given $A^T\vec{p} + w\vec{l}$. Thus 
+\[ \vec{p} - A^T\vec{p} - w\vec{l} \]
+is the vector of unit profits for a unit sold of each commodity type. The rate of profit of the $i^{th}$ industry, $\pi_i$, is simply put the ratio of profit to cost price of a unit of the $i^{th}$ commodity type. Writing $A$ in terms of it's columns:
+\[ A= \begin{pmatrix} \vec{a}_1 & \vec{a}_2 & \ldots & \vec{a}_m \end{pmatrix} \]
+we can see that the $i^{th}$ entry of the cost price vector $A^T\vec{p}+w\vec{l}$ will be $\vec{a}_i \cdot \vec{p} + wl_i$. The rate of profit of the $i^{th}$ industry can then be written
+\[ \pi_i = \frac{p_i - (\vec{a}_i \cdot \vec{p} + wl_i)}{\vec{a}_i \cdot \vec{p} + wl_i} \]
+Assume for a while that, somehow, the rate of profit is equal across all industries, and we will denote this equilibrium rate of profit $\pi$. Replacing $\pi_i$ with $\pi$ and solving for it:
+\begin{align*}
+	  p_i &= \pi(\vec{a}_i \cdot \vec{p} + wl_i) + (\vec{a}_i \cdot \vec{p} + wl_i) \\
+	 &= (1+\pi)(\vec{a}_i\cdot \vec{p} + wl_i)
+\end{align*}
+Thus we can see that
+\[ \vec{p} = (1+\pi)(A^T\vec{p}+w\vec{l}) \]
+Consider the vector $\vec{p}_w := \frac{1}{w}\vec{p}$. This would be analogous for the specific price random variable from Farjoun and Machover. It measures the price of a commodity not by it's price, but by the number of hours of labor which that commodity could purchase if exchanged at it's price. Thus it will be extremely important to compare this vector with the vector of unit values $\vec{\lambda}$. Suppose that all industries are simultaneously profiting, i.e. 
+\[ \vec{p} > A^T\vec{p} + w\vec{l} \]
+Dividing both sides by $w$ gives
+\[ \vec{p}_w > A^T\vec{p}_w + \vec{l} \]
+Solving for $\vec{p}_w$ then gives
+\[ \vec{p}_w > (I-A^T)^{-1}\vec{l} \]
+Where inequality persists since the entries of $I-A^T$ are nonnegative; if all entries of the left side are greater than all those on the right, then taking a linear combination of both sides in the same proportions of each coordinate will preserve inequality. But $\vec{\lambda} = A^T\vec{\lambda} + \vec{l}$, and thus the right hand side is $\vec{\lambda}$. We thus have that
+\begin{align}
+	\vec{p}_w > \vec{\lambda} \label{priceExceedsValue}
+\end{align}
+Thus in a profitable capitalist economy, prices measured in labor hours must exceed the actual number of hours required to create the commodities. This doesn't preclude the proportionality between prices and values, however. Returning to profit, the equation we had earlier relating prices to the rate of profit, with the price vector replaced by the specific price vector $\vec{p}_w$, is
+\[ \vec{p}_w = (1+\pi)(A^T\vec{p}_w + \vec{l}) \]
+Suppose workers are paid exactly subsistence wages, i.e. $w = \vec{p} \cdot \omega\vec{b}$. Then equivalently we have
+\[ 1 = \vec{p}_w \cdot \omega \vec{b} \]
+We will now show that in such a situation, the rate of profit is necessarily higher than the rate of exploitation. We begin by noting that since workers are only paid subsistence, we have $w = \vec{p}\cdot\vec{b}$. Substituting this for $w$ in the equation for the rate of profit gives
+\begin{align*}
+ \vec{p} &= (1+\pi)(A^T\vec{p} + (\vec{p}\cdot \omega\vec{b})\vec{l}) \\
+ 	&= (1+\pi)(A^T\vec{p} + \omega\vec{l}\vec{b}^T\vec{p}) \\
+ 	&= (1+\pi)(A^T + \omega\vec{l}\vec{b}^T)\vec{p}
+\end{align*} 
+The matrix $A^T + \omega\vec{l}\vec{b}^T$ might look familiar. Call it $M$, since it's obviously becoming important. We'll reflect on what this matrix actually is shortly. For now though, we would like to show the existence of a row vector $\vec{x}$ such that 
+\[ \vec{x} = (1+\pi)\vec{x}M \]
+To see this, note first that since $\vec{p} = (1+\pi)M\vec{p}$, it follows that $\vec{p}$ is a nonzero vector in the null space of $I-(1+\pi)M$. Thus this null space has a dimension greater than $0$, and it follows that the matrix is not invertible. Thus the transpose $I-(1+\pi)M^T$ is also not invertible, and thus must also have a null space of dimension greater than $0$. Let $\vec{y}$ be a vector in this null space. Then we have that $\vec{y} = (1+\pi)M^T\vec{y}$, so then if $\vec{x} = \vec{y}^T = (1+\pi)\vec{x}M$. We wish to show that this vector is nonnegative. Suppose it has a negative coordinate, and moreover suppose that any vector we choose which satisfies the equation also must have a negative coordinate. Without loss of generality we can assume that at least one of it's coordinates is positive, since if all nonzero coordinates are negative we can simply take $-\vec{x}$ in place of $\vec{x}$. Then we can define the nonnegative vector $\vec{x}^*$ by replacing any negative coordinates with $0$. Consider an arbitrary coordinate $x^*_i$, and let 
+\[ M = \begin{pmatrix} w_{11} & w_{12} & \ldots & w_{1m} \\
+		w_{21} & w_{22} & \ldots & w_{2m} \\
+		\vdots \\ w_{m1} & w_{m2} & \ldots & w_{mm} \end{pmatrix} = \begin{pmatrix} \vec{w}_1 & \vec{w}_2 & \ldots & \vec{w}_m \end{pmatrix} \]
+Then from these definitions it follows that 
+\[ (\vec{x}^*M)_i = \vec{x}^* \cdot \vec{w}_i = \sum_{j=1}^m x^*_ia_{ji} \]
+Now by definition of $\vec{x}*$ and since the entries of $M$ are nonnegative. If $i$ is such a coordinate that $x_i$ has been replaced with $0$, then obviously we have that the sum on the right is greater than or equal to $x^*_i = 0$. Suppose it is an untouched coordinate. Then we have that
+\[ x_i = \sum_{j=1}^m x_ia_{ji} \leq \sum_{j=1}^m x_i^*a_{ji} \]
+since, having replaced negative weights with $0$ weights, this linear combination cannot possibly be smaller. Thus we have that
+\[ \vec{x}^* \leq (1+\pi)\vec{x}^*M \]
+Now if all entries are equal, then we have a nonnegative $\vec{x}^*$ satisfying the equation which we assumed was impossible. Thus it must be the case that one of the entries has strict inequality. Thus, if multiplying by $\vec{p}$ (effectively a dot product), we have
+\[ \vec{x}^*\vec{p} < (1+\pi)\vec{x}^*M \vec{p} \]
+But we also have that $\vec{p} = (1+\pi)M\vec{p}$, and so 
+\[ \vec{x}^*\vec{p} = (1+\pi)\vec{x}^*M\vec{p} \]
+We have thus shown that $\vec{x}^*\vec{p}$ is both equal to and smaller than a particular number, a contradiction. It is thus the case that either we have constructed a nonnegative $\vec{x}^* \neq \vec{0}$ satisfying the desired condition, or we have that one must exist. Either way, we have what we came for. \par 
+With all of that said, we can now assume the existence of a nonnegative row vector $\vec{y} \neq\vec{0}$ such that $\vec{x} = (1+\pi)\vec{x}M$. Let $\vec{y} = \vec{x}^T$. With this vector we can show that $\pi < e$, and demonstrate a condition in which an important relationship between the two rates holds. Turning to $\vec{\lambda}$, note
+\begin{align*}
+	\vec{\lambda} &= \vec{c} + \vec{v} + \vec{s} = A^T\vec{\lambda} + \omega(\vec{\lambda}\cdot\vec{b})\vec{l} + e\omega(\vec{\lambda}\cdot\vec{b})\vec{l} \\
+	&= A^T\vec{\lambda} + (1+e)(\vec{\lambda}\cdot \omega \vec{b})\vec{l} \\
+\end{align*} 
+Thus 
+\begin{align*}
+	\vec{y} \cdot \vec{\lambda} = \vec{y}^TA^T\vec{\lambda} + \vec{y}^T(1+e)(\omega\vec{l}\vec{b}^T)\vec{\lambda}
+\end{align*}
+At the same time we have $\vec{y}^T = (1+\pi)\vec{x}^T(A^T + \omega\vec{l}\vec{b}^T)$. Multiplying by $\vec{\lambda}$ then gives
+\begin{align*}
+	\vec{y}\cdot \vec{\lambda} = (1+\pi)\vec{y}^T(A^T + \omega\vec{l}\vec{b}^T)\vec{\lambda}
+\end{align*}
+Thus we can equate the right hand side of both of these equations and simplify:
+\begin{align*}
+	& \vec{y}^TA^T\vec{\lambda} + \vec{y}^T(1+e)(\omega\vec{l}\vec{b}^T)\vec{\lambda} = (1+\pi)\vec{y}^T(A^T + \omega\vec{l}\vec{b}^T)\vec{\lambda} \\
+	&\implies \cancel{\vec{y}^TA^T\vec{x}} + \cancel{\vec{y}^T\omega\vec{l}\vec{b}^T\vec{\lambda}} + e\vec{y}^T\omega\vec{l}\vec{b}^T\vec{\lambda} = \cancel{\vec{y}^TA^T\vec{\lambda}} + \cancel{\vec{y}^T\omega\vec{l}\vec{b}^T\vec{\lambda}} + \pi\vec{y}^TA^T\vec{\lambda} + \pi\vec{y}^T\omega\vec{l}\vec{b}^T\vec{\lambda} \\
+	&\implies \pi(\vec{y}^TA^T\vec{\lambda}+\vec{y}^T\omega\vec{l}\vec{b}^T\vec{\lambda}) = e\vec{y}^T\omega\vec{l}\vec{b}^T\vec{\lambda} \\
+	&\implies \pi = e\frac{\omega\vec{l}\vec{b}^T\vec{\lambda} \cdot \vec{y}}{(A^T\vec{\lambda} + \omega\vec{l}\vec{b}^T\vec{\lambda})\cdot\vec{y}} = e\frac{[(\lambda \cdot \omega\vec{b})\vec{l}]\cdot\vec{y}}{[A^T\vec{\lambda} + (\vec{\lambda}\cdot \omega\vec{b})\vec{l}]\cdot\vec{y}} = e\frac{\vec{v} \cdot\vec{y}}{(\vec{c} + \vec{v})\cdot \vec{y}}
+\end{align*}
+Since $\vec{l}$ and subsequently $\vec{\lambda}$ are assumed positive, $\vec{v}$ is strictly positive, as is $\vec{c}$. Thus clearly it must be that the numerator is smaller than the denominator of this final equation. Thus it follows that
+\[ \pi < e \]
+This relationship is true in general, given our standard set of assumptions with nothing extra added on. Suppose however that $\vec{y}$ is seen as the gross bundle of goods produced in society in a day. In this case, the numerator and denominator take on new meaning: $\vec{v} \cdot \vec{y}$ becomes $V$, the total value produced going to the workers in the form of wage goods, and $\vec{c} \cdot \vec{y}$ becomes $C$, the total value produced in raw materials. Since $e = \frac{S}{V}$, we thus have that in \textit{this specific case}, Marx's famous formula holds as valid:
+\[ \pi = \frac{S}{C+V} \]
+It goes without saying that $\vec{y}$ can be seen as a bundle of goods, since it is the right dimension and nonnegative. But what does it signify, and does it actually satisfy the necessary equilibrium conditions for our economy? More on this later. \par 
+We've seen a lot of the matrix $M = A^T + \omega\vec{l}\vec{b}^T$. Clarifying the reason for this will help move things forward. Note that we already have the vectors $\vec{c} = A^T\vec{\lambda}$, and $\vec{v} = \omega(\vec{\lambda} \cdot \vec{b})\vec{l} = (\omega\vec{l}\vec{b}^T)\vec{\lambda}$. Thus $\vec{c} + \vec{v} = M\vec{\lambda}$. I.e. applying the matrix $M$ to the vector $\vec{\lambda}$ returns the "necessary" components of each unit value. Meanwhile consider the equivalent factoring of the unit price vector $\vec{p}$. For the $i^{th}$ commodity, we can consider the cost of raw materials and the cost of labor in assembling a single unit. For the former, $c^p_i = \sum_{j=1}^m p_ja_{ji}$. This is clearly the dot product of the $i^{th}$ column of $A$ with $\vec{p}$, and we therefore have 
+\[ \vec{c}^p = A^T\vec{p} \] 
+For the latter, $v^p_i = wl_i$, but for workers laboring at subsistence we have $w = \vec{p}\cdot (\omega\vec{b})$, and so $v^p_i = \vec{p}\cdot (\omega\vec{b})l_i = \omega l_i \vec{b}^T\vec{p}$. Thus 
+\begin{align*}
+	\vec{v}^p = \omega\begin{pmatrix} l_1 \\ l_2 \\ \vdots \\ l_m \end{pmatrix} \begin{pmatrix} b_1 & b_2 & \ldots & b_m \end{pmatrix}\vec{p} = (\omega\vec{l}\vec{b}^T)\vec{p}
+\end{align*}
+Thus once again, $M\vec{p}$ gives the components of each unit price which are "necessary", but this time instead of values it gives prices. Finally, consider the significance of $M^T$. Consider a bundle of goods $\vec{x}$. Then
+\begin{align*}
+	 M^T\vec{x} &= (A + \omega\vec{b}\vec{l}^T)\vec{x}
+	 	&= A\vec{x} + \omega\vec{b}\vec{l}^T\vec{x} = A\vec{x} + \omega(\vec{l}\cdot \vec{x})\vec{b}
+\end{align*} 
+If this bundle $\vec{x}$ is the total gross product of a day, then recall we have $T\bar{N} = \vec{l}\cdot\vec{x} \implies  \bar{N} = \omega(\vec{l}\cdot\vec{x})$. But $\vec{v} = \omega(\vec{l}\cdot\vec{x})\vec{b} = (\omega\vec{l}\vec{b}^T)\vec{x}$, exactly that second term above. Thus 
+\[  M^T\vec{x} = A\vec{x} + \bar{N}\vec{b} \]
+Now $A\vec{x}$ is clearly the bundle of raw materials necessary to create the gross amount $\vec{x}$, while just as clearly $\bar{N}\vec{b}$ is the total bundle of necessary wage goods which are needed to reproduce the day's labor power. Thus, viewing $\vec{x}$ as the gross daily bundle of goods produced, $M^T\vec{x}$ returns the total bundle of necessary goods required to produce that gross output. It of course follows, and can be seen separately, that $(A\vec{x})\cdot\vec{\lambda}$ should then be the total value of the necessary materials, i.e. $C$. Indeed,
+\[ (A\vec{x})\cdot\vec{\lambda} = \vec{x}^TA^T\vec{\lambda} = (A^T\vec{\lambda})\cdot\vec{x} = \vec{x} \cdot \vec{x} = C \]
+And similarly for the second term. Putting the two together we then have the identity
+\[ (M^T\vec{x})\cdot\vec{\lambda} = C+V \]
+Another essential fact worth noting:
+\begin{fact}
+	If $A$ is irreducible, then $M$ is also irreducible. 
+\end{fact}
+\begin{proof}
+	For simplicity we show that $M^T$ is irreducible on the assumption of $A$ being irreducible, for notational simplicity. Let $\omega\vec{b}\vec{l}^T = B$, so that $M^T = (1+\pi)A+(1+\pi)B$. Suppose that $M^T$ is not irreducible. Then there exists a permutation matrix $P$ such that
+	\[ P^T(M^T)P = \begin{pmatrix} M_{11} & M_{12} \\ O & M_{21} \end{pmatrix} \]
+For some block matrix of zeros $O$. Additionally, let
+\[ (1+\pi)P^TAP = (1+\pi)\begin{pmatrix} A_{11} & A_{12} \\ A_{21} & A_{21} \end{pmatrix} \hspace{2cm} (1+\pi)P^TBP = (1+\pi)\begin{pmatrix} B_{11} & B_{12} \\ B_{21} & B_{21} \end{pmatrix} \]
+Thus it must be the case that $(1+\pi)(A_{21} + B_{21}) = O$, the matrix of $0$'s. But both $A$ and $B$ are nonnegative as is $(1+\pi)$, so the entries of $A_{21}$ and $B_{21}$ must also be nonnegative, and so the equation can only be true if both $A_{21}$ and $B_{21}$ are themselves that zero matrix $O$. Thus if $M^T$ is not irreducible, then neither are $A$ nor $B$, a contradiction since we are assuming $A$ is irreducible. Thus $M^T$ must be irreducible as well as $M$. 
+\end{proof}
+From this and the Perron-Frobenius theorem the following corollary is worth noting:
+\begin{corollary}
+	The \emph{balanced growth} vector $\vec{y}$ satisfying $\vec{y} = (1+\pi)M^T\vec{y}$ is unique up to positive scalar multiples. The so called "balanced growth path" is one-dimensional.  Furthermore, the path itself is independent of the profit rate $\pi$. 
+\end{corollary}
+To conclude this section laying out the basic definitions and relationships, we already have the unit surplus vector $\vec{s} = \vec{\lambda} - (\vec{c}+\vec{v})$. Similar we can now define the vector of unit profits, which we will denote $\vec{\rho}^p = \vec{p} - (\vec{c}^p + \vec{v}^p)$. We add the superscript $p$ to this vector to indicate that it is going to be a function of the unit price vector, when constrained by the coming equilibrium conditions.
+

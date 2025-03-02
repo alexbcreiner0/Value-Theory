@@ -1,0 +1,110 @@
+\section{The Transformation Problem}
+ Marx's theory of prices of production found in volume three of capital. In this volume, Marx assumes a capitalist society in which the rate of profit has been equalized across all industries, despite the composition of capital of each industry being allowed to differ. These assumptions at their core create immediate difficulties for any labor theory of value: if two industries have differing compositions of capital, then their profit rates should differ. It is clear that if the labor theory of value is to be true in such an ideal society, that there must be some sort of process by which the values of commodities are \emph{transformed} into new numbers of (of the same numeraire, labor time) which are themselves proportional to prices by a constant of proportionality $\alpha$. Marx argued exactly this. He called these adjusted numbers the prices of production of a commodity, and made the following claims about them: 
+\begin{itemize}
+	\item[(1)] "The sum of the prices of production of all commodities produced in society - the totality of all branches of production - is equal to the sum of their values."
+	\item[(2)] "It remains true, nevertheless, that the cost price of a commodity is always smaller than it's value."
+	\item[(3)] "Surplus values and profit are identical from the standpoint of their mass."
+	\item[(4)]
+	\item[(5)]
+\end{itemize}
+The picture that Marx is painting here is that the transformation of values into prices of production is conservative in the sense that it is a mere shifting around of the mass of value produced. Some value from industries with lower composition of capital is shifted over to those industries with higher composition of capital, so that all capitalists can enjoy the same rate of profit despite some industries producing objectively more value than others. A sort of 'communism among the capitalist class', as David Harvey I think put it. This process, to Marx, was also important in that it served to mystify the true source of value, so that capitalists, entirely focused on their profit rates, would be blind to the true source of those profits. In other words, this transformation process was in some sense to Marx the technical process by which money fetishism takes root. \par
+Thus in this section we assume an equalized profit rate across industries, $\pi$. As we have a vector of unit prices, $\vec{p}$, we also should have a vector of unit prices of production, which Marx defines as 
+\[ \vec{q} := (1+\pi)(\vec{c} + \vec{v}) = (1+\pi)M\vec{\lambda} \]
+These were the numbers that Marx used in his own calculations and demonstrations, but he nonetheless he did not claim that these were the \textit{actual} prices of production. Instead, Marx considered these to be merely first approximations to the prices of production. The idea is that these updated "values" create a "ripple effect" of sorts. If the "value" of commodity $i$ changes in such a way as to effect prices, then this will in turn cause the "values" of all other commodities in the economy to change which use that commodity as a direct or even indirect input. Thus Marx's $\vec{q}$ is simply the first step $\vec{q}_1$ of what he considered to be an iterative process defined by
+\[  \vec{q}_0 = \vec{\lambda} \]
+\[ \vec{q}_{n+1} = (1+\pi)M\vec{q}_n \]
+\begin{claim}
+	The iterative process above converges. Moreover it converges to a vector $\vec{q}$ satisfying
+	\[ \vec{q} = (1+\pi)M\vec{q} \]
+	We saw above in the proof of the existence of the balanced growth path $\vec{y}$ that such a vector \emph{exists}, (or at least it's column vector equivalent for $M^T$), but we did not see that such an iterative process above must converge (if it converges at all) to such a vector. 
+\end{claim} 
+One thing which we can immediately see about the above claim initiates the cascade of issues with this entire framing; which is that the steady state here must be unique. This is because $M$ is irreducible, and the steady state must be strictly positive. If $\vec{q}$ is a solution to the above equation, then it is a positive eigenvector of $M$ with corresponding eigenvalue $\frac{1}{1+\pi}$, which by Perron-Frobenius is unique up to scalar multiples. This observation about $M$ though, that it is irreducible, creates a concern in the following sense. \par 
+Recall that if all industries are profiting simultaneously at a common equilibrium rate of profit $\pi$, then the price vector must satisfy the equation 
+	\[ \vec{p} = (1+\pi)M\vec{p}  \]
+Again, this amounts to the claim that $\vec{p}$ is a strictly positive eigenvector of $M$ with eigenvalue $\frac{1}{1+\pi}$. Again, by Perron Frobenius, this is unique in it's being a positive vector with a positive eigenvalue, up to scalar multiples. The issue presents itself when we realize that the \emph{the profit rate is completely and uniquely determined by the technical matrix} $M$. What determines $M$? The technical coefficients of production within $A$, the living labor values $\vec{l}$, the length of the working day $T$, and finally the means of subsistence vector $\vec{b}$. If these are fixed, then there is only a single profit rate which could possible be the equilibrium rate of profit. Consequently the prices of all commodities is completely determined by $M$ as well. This is very concerning, since it means that profits and prices in this situation have nothing directly to do with labor values. $\vec{\lambda}$ appears nowhere in these equations. This doesn't mean the situation is hopeless, but it does make it seem like values are superfluous and unnecessary to determine prices. \par 
+The next question to ask then is: do prices and labor values at least coincide in this situation where all industries are profiting simultaneously? The answer is yes, but only in a very specific and unrealistic circumstance: 
+\begin{theorem}
+	Suppose that the rate of profit $\pi$ is equalized across all industries. Then profits are proportional to surplus values (i.e. there exists a positive $\alpha$ such that $\vec{s} = \alpha\vec{\rho}$) if and only if all industries have an equal value composition of capital. That is to say, $\frac{c_1}{v_1} = \frac{c_2}{v_2} = \ldots = \frac{c_m}{v_m}$. 
+\end{theorem}
+\begin{proof}
+	Suppose first that $\vec{s} = \alpha\vec{\rho}$ for some $\alpha$. The clearly $\vec{s} - \alpha\vec{\rho} = \vec{0}$. And yet
+	\begin{align*}
+		\vec{s} - \alpha\vec{\rho} &= (\vec{\lambda} - M\vec{\lambda}) - \alpha(\vec{p} - M\vec{p}) \\
+		&= (I-M)(\vec{\lambda} - \alpha\vec{p})
+	\end{align*}
+Recall that when all industries are profiting simultaneously, $\vec{p} > M\vec{p}$, and so $M$ is productive and therefore $I-M$ is invertible. Thus multiplying both sides by $(I-M)^{-1}$, we obtain that $\vec{\lambda} = \alpha\vec{p}$. \par 
+From this it follows that $\vec{c} = A^T\vec{\lambda} = A^T\alpha\vec{p} = \alpha\vec{c}^p$, and similarly $\vec{v} = \alpha\vec{v}^p$. Thus for any $i$ we have
+\[ \pi = \pi_i = \frac{\rho_i}{c_i^p + v_i^p} = \frac{s_i}{c_i+v_i} = e\frac{v_i}{c_i+v_i} \]
+Thus by assuming the rate of profit to be equalized we have that all of these fractions are the same. Therefore 
+\begin{align*}
+	& \frac{v_1}{c_1+v_1} = \frac{v_2}{c_2+v_2} = \ldots = \frac{v_m}{c_m+v_m} \\
+	&\implies \frac{v_1}{c_1}+1 = \frac{v_2}{c_2}+1 = \ldots = \frac{v_m}{c_m}+1 \\
+	&\implies \frac{c_1}{v_1} = \frac{c_1}{v_1} = \ldots = \frac{c_1}{v_1}
+\end{align*}
+Conversely, suppose that all industries have an equal composition of capital. By the reverse of the logic immediately above then, we have
+\[ e\frac{v_1}{c_1+v_1} = e\frac{v_2}{c_2+v_2} = \ldots = e\frac{v_m}{c_m+v_m} \]
+Call this ratio $\pi_s$. Note that
+\[ \lambda_i = s_i + c_i + v_i = (\frac{s_i}{c_i+v_i} + 1)(c_i+v_i) = (\pi_s+1)(c_i+v_i) \]
+Thus we have the equations
+\[ \vec{\lambda} = (1+\pi_s)(\vec{c} + \vec{v}) = (1+\pi_s)M\vec{\lambda} \]
+\[ \vec{p} = (1+\pi)M\vec{p} \]
+Now \textit{if} prices are proportional to values, and the equation for $\vec{\lambda}$ determined as it is here, then $\vec{p} = \alpha\vec{\lambda}$ implies that $\pi_s = \pi$, and we can see then that this $\vec{p}$ must be a solution to the above price equation. So prices proportional to values satisfy the necessary conditions here. By the uniqueness up to proportionality of such a solution, we conclude that any $\vec{p}$ satisfying the above must be proportional to $\vec{\lambda}$, since that will always be a solution. 
+\end{proof}
+Marx was prepared for this much. As we said, never pretended that prices should be directly proportional to values in the presence of an equilibrium rate of profit. What he suggested instead is that the five global claims about the economy described in the beginning of this section are true - the picture painted overall is that labor is still the sole source of prices, and that the prices differing are merely a redistribution of that value - a sort of communism among the capitalist class. \par 
+What Morishima is interested in doing first and foremost is finding the minimal conditions under which Marx's self described first approximation $\vec{q}$ is actually the final approximation, so that his calculations hold precisely. From the above theorem we have the following corollary:
+\begin{corollary}
+	If all industries have identical value compositions of capital, then Marx's prices of production $\vec{q} = \vec{\lambda}$, and furthermore, since $\vec{q}$ is proportional to $\vec{p}$, it follows that prices in general are proportional to values. 
+\end{corollary}
+This is extremely unrealistic, however, and Marx is not interested in this extremely special case. Morishima identifies the necessary and sufficient conditions for Marx's first approximation to be exact:
+\begin{theorem}
+	Have $\vec{q}$ defined as above, that is, $\vec{q} = (1+\pi)M\vec{\lambda}$. Then $\vec{q} = (1+\pi)M\vec{q}$ iff 
+	\[ \pi M(\vec{c}+\vec{v}) = M\vec{s} \]
+\end{theorem}
+\begin{proof}
+	Note that
+	\begin{align*}
+		& M\vec{s} = \pi M(\vec{c}+\vec{v}) \\
+		&\iff M(\vec{c}+\vec{v})+M\vec{s} = M(\vec{c}+\vec{v}) + \pi M(\vec{c}+\vec{v}) \\
+		&\iff M(\vec{c}+\vec{v}+\vec{s}) = (1+\pi)M(\vec{c}+\vec{v}) \\
+		&\iff M\vec{\lambda} = (1+\pi)M(M\vec{\lambda}) \\
+		&\iff (1+\pi)M\vec{\lambda} = (1+\pi)M[(1+\pi)M\vec{\lambda}] \\
+		&\iff \vec{q} = (1+\pi)M\vec{q}  
+	\end{align*}
+\end{proof}
+This rather mystifying condition, $\pi M(\vec{c}+\vec{v}) = M\vec{s}$, deserves some consideration. Fundamentally, like the condition of equal compositions of capital, is a condition on the technical properties of the capitalist economy. ($A$ and $\vec{l}$). Note that since $\vec{s} = \vec{\lambda} - M\vec{\lambda}$, $M\vec{s} = M\vec{\lambda} - M(\vec{c}+\vec{v})$. Adding this second term to both sides of our condition above gives another equivalent way to state this condition:
+\[ M\vec{\lambda} = (1+\pi)M(\vec{c}+\vec{v}) \]
+The left hand side here is obviously $\vec{c}+\vec{v}$, the necessary component of the vector of unit values. The right hand side is the somewhat mystifying part. I feel like this version is what to stare at to make physical sense of the condition, but am having trouble wording and thinking about it. \par 
+Morishima also notes that this condition can be written as the statement that 
+\[ M(\pi(\vec{c}+\vec{v})-\vec{s}) = \vec{0} \label{linDepInd} \]
+This can be true in two ways:
+\begin{itemize}
+	\item[(1)] $\pi(\vec{c}+\vec{v})-\vec{s} = \vec{0}$ \\
+	\item[(2)] $\pi(\vec{c}+\vec{v})-\vec{s} \in Null(M)$ 
+\end{itemize}
+In the first case, we have that $\vec{s} = \pi(\vec{c}+\vec{v})$, and this means
+\[ \vec{\lambda} = \vec{c}+\vec{v}+\vec{s} = (\vec{c}+\vec{v}) + \pi(\vec{c}+\vec{v}) = (1+\pi)(\vec{c}+\vec{v}) \]
+i.e. the vector of surplus value is merely a scalar multiple of the constant and variable value, a proportion of it equal to the rate of profit. Moreover $\vec{s} = \pi(\vec{c}+\vec{v})$ implies that $s_i = \pi(c_i+v_i)$ for all $i$, i.e. $\frac{s_i}{c_i+v_i} = \pi$ for all $i$. Thus this first case implies that all industries have an equal composition of capital, or equivalently that profits are proportional to surplus values. Note also that in this first case, $\vec{c} = k\vec{v}$ for some $k$, and so $\ldots$ and so $det(M) = 0$ (this argument seems to require a two department model, so I need to come back here and verify if it's still true for a single industry. See page 77 footnote 5 of Morishima). Condition two also obviously implies that $det(M) = 0$. Thus a necessary condition for our own condition is that $M$ be singular. Necessary but obviously not sufficient, since of course $M$ can be singular without the particular vector $\pi(\vec{c}+\vec{v})-\vec{s}$ being $0$ or witnessing a nontrivial null space. Despite this, Morishima uses this as grounds to call \ref{linDepInd} that of \emph{linearly dependent industries} (referring to the fact that the columns of $M^T$ are the capital input feeding coefficients $a_{1i},a_{2i},\ldots,a_{mi}$ plus the labor input feeding coefficients $\omega l_i b_1,\omega l_i b_2,\ldots \omega l_i b_m$.) \par 
+If we have \ref{linDepInd}, what exactly follows? By uniqueness up to proportionality of the solution $\vec{p} = (1+\pi)M\vec{p}$, it follows that whatever the unit price vector actually is, it must be proportional to $\vec{q}$, i.e. $\vec{p} = \alpha\vec{q}$. Take unit prices to be normalized such that $\vec{q} = \vec{p}$, i.e. $\alpha = 1$. Then the prices satisfy $\vec{p} = (1+\pi)(\vec{c}^p + \vec{v}^p)$, but $\vec{p} = \vec{q} = (1+\pi)(\vec{c}+\vec{v})$. These expressions can then be equated, the $(1+\pi)$ can be canceled out, and we have
+\[ \vec{c}^p + \vec{v}^p = \vec{c}+\vec{v} \]
+Thus under the condition of linear independent industries, unit costs of production are precisely the necessary components of the unit values. In other words, costs of production remain unchanged in the transformation of values into prices. This is true \emph{despite} prices no longer being proportional (necessarily) to values! Note that the above only implies that
+\[ M\vec{\lambda} = M\vec{p} \]
+This implies that $\vec{\lambda} = \vec{p}$ only if $M$ is invertible, but the condition of linearly independent industries, as we saw, strictly precludes this! \par 
+Now let us consider Marx's claims about his prices of production one by one. Marx conflated prices and values in his own work. He did this because he assumed that profits could be proportional to surplus values without it being the case that industries have equal compositions of capital. As we have seen, that cannot be the case, at least in this situation of an equilibrium rate of profit (a situation I currently strongly disagree with in it's premise, but it's nonetheless what Marx himself wanted to do). This is why the following errors occur. \par  
+With Marx's claim (1), he is claiming that the sum of the prices of production of the total bundle of goods is equal to the sum of the values of those goods. Let $\vec{x}$ be the total bundle of goods. Then the sum of the the prices of production of all goods of this bundle is $\vec{q}\cdot \vec{x}$, while the total value is of course $\vec{\lambda} \cdot \vec{x}$. We then have 
+\begin{align*}
+	\vec{q}\cdot\vec{x} &= (1+\pi)(\vec{c}+\vec{v})\cdot\vec{x} \\
+		&= (1+\frac{\vec{s}\cdot\vec{y}}{(\vec{c}+\vec{v})\cdot\vec{y}})(\vec{c}+\vec{v})\cdot\vec{x} \\
+		&= \vec{c}\cdot\vec{x} + \vec{v}\cdot\vec{x} + \frac{(\vec{c}+\vec{v})\cdot\vec{x}}{(\vec{c}+\vec{v})\cdot\vec{y}}\vec{s}
+\end{align*} 
+We can now see that Marx's claim is not always true, even under the condition of "linearly dependent industries". It requires a very particular production path, that of the equilibrium balanced growth path $\vec{y}$. 
+\subsection{Discussion}
+Morishima is obsessed with this idea of balanced growth paths, and makes a great deal of the fact that all of Marx's fundamental claims from volume 3 hold true in the case where industries are "linearly dependent" and production proceeds along the balanced growth path $\vec{y}$. This is well and good but doesn't address the fundamental issue here, which is that the claims fail if this hyper specific and furthermore impossible output bundle isn't what society is producing daily. If labor is the true source of value, then the claims should apply for any \textit{realistic} growth path chosen. What I mean by realistic is the following. \par 
+The equilibrium rate of profit is real strictly in the sense that there is undeniably a bundle of goods which society could be producing which could be associated with this equilibrium rate. If society were to produce this and the process of profit equalization were to occur, then things could settle here. But why would society settle into this kind of production? My impression is that Marx's claims should be universally applicable but only to the production bundles which are reachable from some initial state in which prices are proportional to values. To be convinced that \textit{any} of this matters in the slightest, I would have to be shown a dynamic model which demonstrates under some set of ideal conditions and basic assumptions about consumer and capitalist behavior that an equilibrium profit rate were being approached in actuality. Marx assumed an equilibrium profit rate existed because so did his contemporaries, but I'm not convinced. \par 
+Capitalists seek higher profits, this much can be assumed. For the sake of an ideal situation I'll even assume that production methods are unchanging - innovation doesn't exist. A capitalist which sees an industry with a higher profit rate than his own will certainly in this situation move capital over to that industry, until a glut in that industry is produced driving down prices and subsequently profitability of that industry. This leads capitalists in that industry to reinvest their capital into other industries, and so forth and so on. This produces a dynamically evolving sequence of profit rates for each firm. Every economist of the time saw this, but they also all seem to assume that
+\begin{itemize}
+	\item[(1)] The sequence of profit rate of each industry is Cauchy, i.e. they are actually converging to something over time. 
+	\item[(2)] Not only are those profit rates all converging, but they are converging to the same value. 
+\end{itemize}
+Why on earth should either of these be true? If anything, the primitive labor theory of value, Adam Smith's ideal starting point wherein prices are directly proportional to labor values, if it were \textit{ever true} in any capacity at any historical moment, seems to heavily imply that none of these rates of profits should \emph{ever} converge to each other, since not only would they be starting from wildly different rates, but there is no reason to assume that those initial industrial natural rates wouldn't continue to exert pull as attractors themselves! \par 
+There was never any good reason as far as I can tell for these economists to assume that an equilibrium rate of profit even exists as a number to discuss within their theories. Never mind the claims that "the equilibrium profit rate will never actually emerge in reality" (despite the claims being valid). Despite never actually being realized, an equilibrium rate of profit could still exert an influence on the economy in the sense of an attracting force. But if this rate can't even be a number theoretically, then it couldn't even be that. The fact that assuming that such a thing exists in the economy produces consequences radically differing from what one would expect doesn't to me implicate problems with a labor theory of value, but rather problems with that assumption, which unlike the labor theory of value I haven't seen anything close to a satisfactory justification. 
+
