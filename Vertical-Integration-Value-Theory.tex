@@ -1,0 +1,935 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+% Uncomment if using graphics
+% \usepackage{graphicx}
+% \graphicspath{{/home/alex/Laptop-Server/Reproduction-Schema-WriteUp/images/}}
+\usepackage[margin=1in]{geometry}
+% Uncomment if using a bibliography
+% \usepackage{biblatex}
+% \addbibresource{bibliography.bib}
+\usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% Uncomment if you need endnotes
+\usepackage{endnotes}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{accents}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
+\urlstyle{same}
+
+\title{Generalized Value Theory}
+\author{Alex Creiner}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{theorem}[section]
+
+\begin{document}
+
+\maketitle
+\section{Simple Reproduction}
+
+\subsection{The Model}
+
+We have a productive input-output matrix $A = (a_{ij})$ for $i,j=1,\ldots n$, where $a_{ij}$ is the number of units of commodity $i$ needed to make a unit of commodity $j$. We also have a column vector of living labor values $\vec{l} \in \mathbb{R}^n$, where $l_{i}$ is the number of hours of labor required to construct a unit of commodity $i$. 
+
+We need other exogenous variables to fully characterize the economy. In particular, we need some number to measure the distribution of income between the capitalists and the workers. The most straightforward thing to define for this would be the overall means of subsistence $\vec{w}$, which is the real bundle of goods which is consumed each period by the working class as a whole. (If $\vec{b}$ is the inidividual means of subsistence and $N$ is the total number of workers, then of course $\vec{w}= N\vec{b}$). 
+
+Since we are dealing with simple reproduction, all surplus goods are assumed to be consumed by capitalists. We can specify this bundle either via a rate of exploitation and taking a difference, or directly with a bundle we will denote $\vec{c}$. 
+
+Given a bundle of goods $\vec{d}$, the means of production needed to create this bundle is the following. For $d_1$ units of commodity $1$, we need $a_{11}d_1$ many units of commodity $1$. We also need $d_2$ many units of commodity $2$, meaning a needed $a_{12}d_2$ many units of commodity $1$. Overall we need $\vec{a}_1\circ \vec{d}$ many units of commodity $1$ for the whole bundle, where $\vec{a}_1$ is the first row of $A$. Continuing in this way gives us a needed commodity bundle of $A\vec{d}$. 
+
+The output of a steady-state economy (e.g. an economy engaged in simple reproduction) $\vec{x}$ can thus be written 
+
+\begin{equation}
+    \vec{x} = A\vec{x}+\vec{w}+\vec{c}
+\end{equation}
+
+From this we can define an hourly wage $w$ in whatever the currency is for our economy (we will use dollars). Let $\vec{p}$ be the unit price vector. Then the proce of the worker consumption bundle is $\vec{p}\circ \vec{w}$, and this must equal the total hours of labor done in the production period times the wage rage, whatever it is, i.e.
+
+\begin{equation}
+    \vec{p}\circ \vec{w} = w(\vec{l}\circ \vec{x})
+\end{equation}
+
+If we assume perpetual supply demand equilibrium, then we must assume an equilibrium rate of profit, $\pi$. This number is required to satisfy the condition that if a capitalist produces the commody and sells it, they receive a return on their investment which is a proportion $\pi$ of what they spent. To produce a commodity, the capitalist must purchase the necessary materials for making it. The necessary bundles for creating a unit of each commodity is precisely the columns of $A$. Thus the total price of these materials cost for each commodity is given by $A^T\vec{p}$. Additionally, the capitalist must purchase the labor required for making it, and the vector of these values is $w\vec{l}$. Our price vector must therefore satisfy the system of equations
+
+\begin{equation}\label{eq-prices}
+    \vec{p} = (1+\pi)(A^T\vec{p}+w\vec{l})
+\end{equation}
+
+In Morishima's presentation, instead of specifying a $\vec{w}$ he specifies an individual means of subsistence $\vec{b}$, along with a working day's length $T$, and from this specifies a real hourly wage $\omega \vec{b}$ where $\omega = \frac{1}{T}$. The price of this real wage bundle is of course the hourly wage in dollars:
+
+\begin{equation}
+    w = \omega\vec{b}\circ \vec{p}
+\end{equation}
+
+Substituting this for $w$ in \ref{eq-prices} gives
+
+\begin{align}
+    \vec{p} &= (1+\pi)(A^T\vec{p}+(\omega\vec{b}\circ \vec{p})\vec{l}) \\
+            &= (1+\pi)(A^T+\omega\vec{l}\vec{b}^T)\vec{p} \\
+            &= (1+\pi)M^T\vec{p}
+\end{align}
+
+where $M^T = A^T + \omega\vec{l}\vec{b}^T$. E.g. the unit price vector must be an eigenvector of $M^T$ with associated eigenvalue $\frac{1}{1+\pi}$. Moreover consider multiplying the transpose of $M^T$, i.e. $M = A+\omega\vec{b}\vec{l}^T$ by a real goods vector $\vec{d}$. 
+
+\begin{align}
+    M\vec{d} = (A+\omega\vec{b}\vec{l}^T)\vec{d} &= A\vec{d} + \omega\vec{b}\vec{l}^T \vec{d} \\
+                                                   &= A\vec{d} + (\vec{l} \circ \vec{d})\omega\vec{b}
+\end{align}
+
+We've already seen that $A\vec{d}$ is the means of production cost for producing $\vec{d}$. The second term, meanwhile, is the number of labor hours needed multiplied by the real hourly wage bundle, e.g. it is the wage cost of producing the bundle $\vec{d}$, measured in real terms as a bundle of goods purchased with the wages. $M$ thus behaves identically to $A$ except that it actually incorporates labor as an input in addition to the means of production. 
+
+It can be shown that if $A$ is a productive matrix, then by the Perron-Frobenious theorem there is only a single (up to scalar multiples) nonnegative real goods vector $\vec{y}$ which satisfies the eigenvector condition
+
+\begin{align}
+    \vec{M}\vec{y} = \alpha \vec{y}
+\end{align}
+
+For any $\alpha$. This fully constrains $\pi$ via $\frac{1}{1+\pi} = \alpha$, thus demonstrating that the equilibrium rate of profit is fully fixed for a fixed value of $A$, $\vec{l}$ and $\vec{w}$. 
+
+Finally, we require of our steady-state economy that capitalists consume what they earn. The real profits they walk away with are the dot product of the unit real profits with the total output: $\pi(A^T\vec{p}+w\vec{l})\circ \vec{x}$. The price of the consumption bundle for capitalists must equal this, i.e.
+
+\begin{equation}
+    \vec{p}\circ \vec{c} = \pi(A^T\vec{p}+w\vec{l})\circ \vec{x}
+\end{equation}
+
+\subsection{Classical Labor Values}
+
+The classical labor value equation is
+
+\begin{equation}\label{classical-values}
+    \vec{\lambda} = A^T\vec{\lambda}+\vec{l}
+\end{equation}
+
+One can immediately see a problem with the claim that natural prices are proportional to labor values in general, just from what we've said already. The reason is that the profit rate, as we saw, is a function of not only the techniques of production ($A$ and $\vec{l}$) but also of the distribution of income (e.g. $\vec{b}$, $\vec{w}$, etcetera). However, the notion of a subsystem leads us to a generalization of the notion of labor values which can resolve this issue.
+
+A \textbf{subsystem} is a vertically integrated `slice' of the economy that produces one unit of a single commodity as net output and replaces the used-up means of production. There is a subsystem implicit to the definition of value as given in \ref{classical-values}. Namely, if we solve for $\vec{\lambda}$, we get that $\vec{\lambda} = (I-A^T)^{-1}\vec{l}$. The operation of multiplying by $(I-A^T)^{-1}$ is equivalent to the action of vertical integration. It replaces living labor hours which are actively employed by each industry with a vector of labor hours which constitute not simply that living labor but also the labor required from other industries in order for that labor to be carried out. I.e. it `integrates' multiple small parts of industries together to create a self-contained and self-sustaining `slice' of the overall economy. 
+
+Surprisingly, there is no redundancy in this labor accounting. The total labor done in the production period is of course $\vec{l}\circ \vec{x}$. Meanwhile, the total bundle of end products (e.g. the \emph{net product}) consumed is $\vec{n} = \vec{w}+\vec{c}$. 
+
+\begin{lemma}
+    $\vec{l}\circ \vec{x} = \vec{\lambda}\circ \vec{n}$
+\end{lemma}
+\begin{proof}
+    First note that 
+    \begin{align}
+        \vec{q} = A\vec{q}+\vec{n} &\implies (I-A)\vec{q} = \vec{n} \\ &\implies \vec{q} = (I-A)^{-1}\vec{n}
+    \end{align}
+    Thus
+    \begin{align}
+        \vec{l}\circ\vec{q} &= \vec{l}\circ (I-A)^{-1}\vec{n} \\
+                            &= ((I-A)^{-1}\vec{n})^T\vec{l} \\
+                            &= \vec{n}^T(I-A^T)^{-1}\vec{l} \\
+                            &= \vec{n}^T \vec{\lambda} \\
+                            &= \vec{\lambda} \circ \vec{n}
+    \end{align}
+\end{proof}
+
+\subsection{Super-Integrated Subsystem}
+
+The vertical integration method implicit to Marx's value definition  (or, more accurately, Sraffa's) brings into the industrial subsystems the means of production and labor power required to make commodities. It thus brings in the required consumer goods for workers, but not capitalists. Doing so will define a new vertical integration system. 
+
+For starters, we have the $\vec{c}$ vector. We also found earlier the total price in dollars of goods consumed by capitalists (i.e. the total profits), which was $\pi(A^T\vec{p}+w\vec{l})\circ \vec{q}$. For a particular commodity $i$ then, $\frac{c_i}{\pi(A^T\vec{p}+w\vec{l})\circ \vec{q}}$ is the amount of commodity $i$ consumed as a proportion of the total profits. 
+
+What we want is the amount of commodity $i$ which a capitalist receives `in exchange' for producing a unit within their own industry, $j$. We thus additionally need the profit made by a capitalist for a unit of output. For a capitalist in industry $j$, the cost of producing a unit is $\pi(\vec{a}_j\circ \vec{p}+wl_j)$, where 
+
+\begin{equation}
+    A = \begin{pmatrix} \vec{a}_1 & \vec{a}_2 & \ldots & \vec{a}_n \end{pmatrix}
+\end{equation}
+
+To summarize, $\frac{c_i}{\pi(A^T\vec{p}+w\vec{l})\circ \vec{q}}$ is the real amount of commodity $i$ consumed by a capitalist household per unit of profit income, and the profit income made per unit of produced outcome by a capitalist engaged in industry $j$ is $\pi(\vec{a}_j\circ \vec{p}+wl_j)$
+
+\begin{equation}
+    \alpha_{ij} = \frac{c_i(\vec{a}_j\circ \vec{p}+wl_j)}{(A^T\vec{p}+w\vec{l})\circ \vec{q}}
+\end{equation}
+
+is the amount of commodity $i$ which a capitalist receives per unit output of commodity $j$ that they engage in producing. We can now define the capitalist consumption matrix $C = (\alpha_{ij})$ for $i,j = 1,\ldots n$. 
+
+A little extra work can show that the overall $C$ matrix can be written as
+
+\begin{equation}
+    C = \frac{\vec{c}(A^T\vec{p}+w\vec{l})^T}{(A^T\vec{p}+w\vec{l})\circ \vec{x}}
+\end{equation}
+
+Thinking through this, and focusing on the numerator, 
+
+The worker consumption matrix is presumably easier to obtain. Consider the matrix
+
+\begin{align}
+    \vec{w}\vec{l}^T &= \begin{pmatrix} w_1 \\ w_2 \\ \vdots \\ w_n \end{pmatrix} \begin{pmatrix} l_1 & l_2 & \ldots & l_n \end{pmatrix} \\
+    &= \begin{pmatrix}
+        w_1l_1 & w_1l_2 & \ldots & w_1l_n \\
+        w_2l_1 & w_2l_2 & \ldots & w_2l_n \\
+        \vdots \\
+        w_nl_1 & w_nl_2 & \ldots & w_nl_n
+    \end{pmatrix}
+\end{align}
+
+$w_il_j$ is the amount of commodity $i$ that a worker receives for an amount of labor $l_j$ sufficient for producing a unit of commodity $j$. This is almost what we want. If we divide by the total labor done $\vec{l}\circ \vec{x}$, then we get the amount of commodity $i$ that a worker receives per unit of commodity $j$ produced. These numbers can be used to define the worker consumption matrix, $W$. 
+
+\begin{lemma}\label{abstract-nonsense}
+    The rate of profit is the dominant eigenvalue of the matrix $(I-A-W)(A^T+W)^{-1}$.
+\end{lemma}
+\begin{proof}
+    Let $X = (I-A-W)(A+W)^{-1}$. This has the eigen equation $X\vec{v} = \lambda \vec{v}$. It can be shown via the Perron-Frobenious theorem again that $I-A-W$ has a real dominant (?) eigenvalue $\lambda^*$. Using this and multiplying both sides of the eigen equation by $(A+W)$ gives us
+    \begin{align}
+        & \vec{v}^T(I-A-W)(A+W)^{-1} = \lambda^*\vec{v}^T \\
+        &\implies \vec{v}^T(I-A-W)=\lambda^*\vec{v}^T(A+W) \\
+        &\implies \lambda^* \vec{p}^T (A+W) = \vec{v}^T-\vec{v}^TA=\vec{v}^TW \\
+        &\implies \vec{v}^T = \lambda^*\vec{v}^T(A+W)+\vec{v}^T(A+W)
+    \end{align}
+    Simplifying the right side of this yields
+    \begin{align}
+        \vec{v}^T &= \vec{v}^T(A+\frac{\vec{w}\vec{l}^T}{\vec{l}\circ \vec{x}})(\lambda^*+1) \\
+                                               &= (\vec{v}^TA + \frac{(\vec{p}\circ \vec{w}\vec{l}^T)}{\vec{l}\circ \vec{x}})(\lambda^*+1) \\
+                                               &= (\vec{v}^TA+w\vec{l}^T)(\lambda^*+1)
+    \end{align}
+    where the final step follows from the fact that $\vec{p}\circ\vec{w}$ is the total wages paid to workers, which is equal to $(\vec{l}\circ\vec{x})w$. But now we see that $\vec{v}$ is really a scalar multiple of $\vec{p}$ by the Perron-Frobenious theorem, so that we have $\lambda^* = \pi$.
+\end{proof}
+
+\begin{lemma}
+    The capitalist consumption matrix $C$ is a function of the techniques of production, $A$ and $l$ as well as of the real distribution of income, $\vec{w}$ and $\vec{c}$. 
+\end{lemma}
+
+\begin{proof}
+    Define the matrix 
+    \begin{equation}
+        C^* = \frac{\vec{c}\vec{l}^T(I-A(1+\pi))^{-1}(A+W)}{\vec{l}^T(I-A(1+\pi))^{-1}(A+W)(\vec{w}+\vec{c})(I-A)^{-1}}
+    \end{equation}
+    By lemma \ref{abstract-nonsense}, the profit rate $\pi$ is a function of $A$ and $W$. $W$ itself is a function of $\vec{l}, \vec{w}$ and $\vec{q}$. Finally, $\vec{q}$ is a function of $A$, $\vec{w}$ and $\vec{c}$. Hence $C^*$ is a function of $A$, $\vec{l}$, $\vec{w}$ and $\vec{q}$. Furthermore, we can show that $C^* = C$ (todo). 
+    %TODO: Show C star equals C
+\end{proof}
+
+This also shows that the matrices $C$ and $W$ are to some extent interchangeable in their ability to characterize the distribution of income. 
+
+We can speak of the total output of a vertically integrated system. This was again implicitly defined in the case of classical (Sraffian) values. A unit of output from the $i^{th}$ industry could be defined as 
+
+\begin{equation}
+    \vec{q}_i = \vec{e}_i+A\vec{q}
+\end{equation}
+
+Where $\vec{e}_i$ is the $i^{th}$ standard basis vector in $\mathbb{R}^n$. E.g. it is the full gross bundle of commodities required to produce a unit of output. We begin here in defining our super-integrated subsystem. Instead of defining it to be the gross bundle of the net product ($\vec{e}_i$) along with the materials required to produce it, we additionally include the bundle of capitalist consumption goods which would be `produced' in this process:
+
+\begin{equation}
+    \vec{q}_i = \vec{e}_i + A\vec{q}+C\vec{q}_i
+\end{equation}
+
+%TODO: Show that C\vec{q}_i actually returns the required amount of capitalist consumption goods
+
+I'm not sure how I feel about discussing these outputs, as they don't include labor and feel arbitrary as a result. Regardless, the following redefinition of value feels more appropriate:
+
+\begin{definition}
+The vertically super-integrated labor-coefficients $\vec{v}$, for a steady-state economy, are what solve the system of equations
+\begin{equation}
+    \vec{v} = A^T\vec{v}+C^T\vec{v}+\vec{l}
+\end{equation}
+\end{definition}
+
+% \begin{theorem}
+%     The prices of a steady-state economy are directly proportional to the super-integrated labor-coefficients, with constant of proportionality $w$. 
+% \end{theorem}
+\begin{proof}
+    We have that capitalists spend what they `earn': 
+    \[ \vec{p} \circ \vec{c} = \pi\left((A^T\vec{p}+w\vec{l})\circ \vec{x}\right) \implies \pi = \frac{\vec{p}\circ\vec{c}}{(A^T\vec{p}+w\vec{l})\circ\vec{x}} \]
+    i.e. the total price of all commodities consumed by capitalists is precisely their profits. As shown, this gives us an identity for the rate of profit, which we can substitute into our price equation:
+    \begin{align}
+        \vec{p} &= A^T\vec{p}+w\vec{l}+(A^T\vec{p}+w\vec{l})\pi \\
+                &= A^T\vec{p}+w\vec{l}+(A^T\vec{p}+w\vec{l}) \frac{\vec{p}\circ\vec{c}}{(A^T\vec{p}+w\vec{l})\circ\vec{x}} \\
+                &= \left[ A^T+ \frac{(A^T\vec{p}+w\vec{l})c^T}{(A^T\vec{p}+w\vec{l})\circ \vec{x}} \right]\vec{p} + w\vec{l} \\
+                &= \left[ A^T+C^T \right] \vec{p} + w\vec{l}
+    \end{align}
+    Thus we have
+    \begin{align}
+        & \vec{p} = (A^T+C^T)\vec{p}+w\vec{l} \\
+        &\implies \vec{p}(I-A^T-C^T) = w\vec{l} \\
+        &\implies \vec{p} = w(I-A^T-C^T)^{-1}\vec{l} = w\vec{v}
+\end{align}
+\end{proof}
+
+Let's confirm that this still works in the bogus case of Passinetti's price equation which is dumb and which I hate:
+
+\begin{equation}\label{garbage}
+    \vec{p} = (1+\pi)A^T\vec{p}+w\vec{l}
+\end{equation}
+
+We still have 
+
+\begin{equation}
+    \vec{x} = A\vec{x}+\vec{w}+\vec{c} = A\vec{x}+\vec{n}
+\end{equation}
+
+Workers still spend what they earn, i.e. 
+
+\[ \vec{p}\circ \vec{w} = w(\vec{l}\circ\vec{x}) \]
+
+Which is the same as before. Capitalists still spend what they `earn', which is now different. Before, when $\vec{p} = (1+\pi)(A^T\vec{p}+w\vec{l})$, we had that that total earnings were $\pi((A^T\vec{p}+w\vec{l})\circ \vec{x}))$. Now it is instead $\pi(A^T\vec{p}\circ \vec{x})$, i.e. we have the new capitalist consumption equation
+
+\begin{equation}\label{spendwhattheyearn2}
+    \vec{p}\circ \vec{c} = \pi(A^T\vec{p}\circ \vec{x})
+\end{equation}
+
+Next, the worker consumption matrix. This should be identical to before but let's go slowly and make sure. The total wages paid to workers in dollars is $w\vec{l}\circ \vec{x}$. Thus, $\frac{w_i}{w\vec{l} \circ \vec{x}}$ is the amount of commodity $i$ distributed to workers per unit wage paid. Meanwhile the income received by workers in industry $j$ per unit of real output produced is $wl_j$. Thus the quantity
+
+\[ w_{ij} = \frac{w_i}{w\vec{l}\circ \vec{x}}wl_j = \frac{w_il_j}{\vec{l}\circ\vec{x}} \]
+
+is the amount of commodity $i$ distributed to workers per unit output of commodity $j$. The set of all such numbers in matrix form is
+
+\[ W = \frac{1}{\vec{l}\circ \vec{x}}\vec{w}\vec{l}^T \]
+
+which is the same as before. On the capitalist side of things, $\frac{c_i}{\pi(A^T\vec{p}\circ \vec{x}}$ is the amount of commodity $i$ consumed by capitalists per dollar of profit earned. Meanwhile $\vec{a}_j \circ \vec{p}$ is the price of all means of production necessary to make a unit of commodity $j$. Since for some stupid reason capitalists are now only profiting on the means of production purchased, $\pi(\vec{a}_j \circ \vec{p})$ is amount of profit earned per unit output of industry $j$, where before it was $\pi(\vec{a}_j \circ \vec{p}+wl_j)$. The product then
+
+\begin{equation}
+    \alpha_{ij} = \frac{c_i}{\pi(A^T\vec{p}\circ \vec{x})}\pi(\vec{a}_j \circ \vec{p}) = \frac{c_i(\vec{a}_j\circ \vec{p})}{(A^T\vec{p} \circ \vec{x})}
+\end{equation}
+
+Is the amount of commodity $i$ earned (and in the case of simple reproduction consumed) by capitalists per unit of commodity $j$ produced. This result in matrix form gives us the capitalist consumption matrix
+
+\begin{equation}
+    C = \frac{\vec{c}(A^T\vec{p})^T}{A^T\vec{p}\circ \vec{x}}
+\end{equation}
+
+The equation for the super-integrated labor coefficients is the same but with the new $C$:
+
+\begin{equation}
+    \vec{v} = A^T\vec{v}+C^T\vec{v}+\vec{l}
+\end{equation}
+
+\begin{theorem}
+    The production prices of a steady-state economy are proportion to the super-integrated labor coefficients i.e. $\vec{p} = w\vec{v}$
+\end{theorem}
+
+\begin{proof}
+    Again we begin with the observation that capitalists spend what they earn as per \ref{spendwhattheyearn2}, allowing us to write the profit identity
+    \begin{equation}
+        \pi = \frac{\vec{p}\circ \vec{c}}{A^T\vec{p}\circ \vec{x}}
+    \end{equation}
+    Substuting this for $\pi$ in equation \ref{garbage}:
+    \begin{align}
+        \vec{p} &= (1+\frac{\vec{p}\circ \vec{c}}{A^T\vec{p}\circ \vec{x}}
+)A^T\vec{p}+w\vec{l} \\
+                &= A^T\vec{p}+ A^T\vec{p}\frac{\vec{p}\circ \vec{c}}{A^T\vec{p}\circ \vec{x}}+w\vec{l} \\
+                &= \left[A^T + \frac{(A^T\vec{p})\vec{c}^T}{A^T\vec{p}\circ \vec{x}} \right]\vec{p} + w\vec{l} \\
+                &= [A^T+C^T]\vec{p} + w\vec{l}
+    \end{align}
+    The rest follows identically to before. 
+\end{proof}
+
+\subsection{Extended Reproduction}
+
+Since the price equation doesn't seem to produce any difference in these results, I guess I'll go with it for now. Define the total output of a hyper-subsystem as 
+
+\begin{equation}
+    \vec{x}_i(t) = A\vec{x}_i(t) + (g+r_i)A\vec{x}_i(t) + \vec{n}_i(t)
+\end{equation}
+
+where $(g+r)$ is an exogenously defined factor defining the rate of reinvestment suitable for maintaining supply demand equilibrium. Thus $\vec{q}_i$ is a real goods vector consisting of the means of production needed for it's own reproduction, plus the means of production needed for the growth, plus the consumption goods needed for capitalists and workers in that industry. 
+
+We'll drop the functions of $t$ notation for convenience. The total output of the economy is then the sum of the outputs of the $n$ hyper-subsystems. If $q = \sum_{i=1}^n \vec{x}_i$, and $\vec{n} = \sum_{i=1}^n \vec{n}_i$, then we have
+\begin{equation}
+    \vec{x} = A\vec{x}+gA\vec{x}+A\left( \sum_{i=1}^n r_i\vec{x}_i \right)+\vec{n}
+\end{equation}
+
+For some notational convenience, next define 
+
+\[ \vec{g} = \sum_{i=1}^n r_iA\vec{x}_i \]
+
+to denote the bundle of commodities being used for reinvestment in the non-uniform growth. Define the matrix $\Gamma = (\gamma_{ij})$ where $\gamma_{ij} = \frac{g_i}{x_i}$ if $i = j$ and $0$ otherwise. Note that $\Gamma\vec{x} = \vec{g}$. $\Gamma$ is useful as an operator to act on real bundles, since $\Gamma \vec{x}$ gives the portion of the total output $x$ which will be spent on non-uniform growth. We can thus rewrite our output equation as 
+
+\begin{equation}
+    \vec{x} = (1+g)A\vec{x}+\Gamma\vec{x}+\vec{n}
+\end{equation}
+
+As before, the total profit income of capitalists is $\pi((A^T\vec{p})\circ \vec{x})$, but now not all of this is spent on consumption. In particular, the portion $g((A^T\vec{p})\circ \vec{x})$ is invested to satisfy the increase in uniform growth in demand due to population growth, while $\vec{p} \circ (\Gamma \vec{x})$ will be invested in order to satisfy the non-uniform growth in demand due to changing tastes. This leaves the amount left over for consumption:
+
+\begin{align}
+    \pi \vec{p}^TA\vec{x} - g\vec{p}^TA\vec{x}-\vec{p}\circ (\Gamma \vec{x})&= \vec{p}^T(\pi A\vec{x}-gA\vec{x}-\Gamma \vec{x}) \\
+                                               &= \vec{p}^T(\pi A - gA - \Gamma) \vec{x} \\
+                                               &= \vec{p}^T((\pi-g)A-\Gamma)\vec{x}
+\end{align}
+
+This allows us to define the consumption condition for capitalists. The total price of the bundle they consume, $\vec{p} \circ \vec{c}$, must equal this, i.e.
+
+\begin{equation}
+    \vec{p} \circ \vec{c} = \vec{p}^T((\pi-g)A-\Gamma)\vec{x}
+\end{equation}
+
+We are now ready to define the real deal. To summarize, we have a non-uniformly growing economy with output equation $\vec{x} = (1+g)A\vec{x}+\Gamma \vec{x}+\vec{n}$, where $\vec{n} = \vec{c}+\vec{w}$. Goods sell at prices satisfying the system $\vec{p} = (1+\pi)A^T\vec{p}+w\vec{l}$. Workers spend what they earn, i.e. $\vec{p}\circ \vec{w} = w(\vec{l}\circ \vec{x})$, and capitalists consume what they do not reinvest, i.e. $\vec{p} \circ \vec{c} = \vec{p}^T((\pi-g)A-\Gamma)\vec{x}$. 
+
+With the identity above we can now redefine the capitalist consumption matrix $C$. The amount of commodity $i$ consumed per `consumption dollar' earned is $\frac{c_i}{\vec{p}^T((\pi-g)A-\Gamma)\vec{x}}$. The amount of profit earned which can be spent on consumption earned per unit output of commodity $j$ is $\vec{p}$. Meanwhile, consider the matrix $(\pi-g)A-\Gamma$:
+
+\begin{align}
+    (\pi-g)A-\Gamma &= \begin{pmatrix} 
+                (\pi-g)\vec{a}_1-\left( \sum r_i A\vec{x}_i \right)\vec{e}_1 & (\pi-g)\vec{a}_2-\left( \sum r_i A\vec{x}_i \right)\vec{e}_2 & \ldots & (\pi-g)\vec{a}_n-\left( \sum r_i A\vec{x}_i \right)\vec{e}_n
+            \end{pmatrix} \\
+            &= \begin{pmatrix}
+                \vec{\eta}_1 & \vec{\eta}_2 & \ldots & \vec{\eta}_n
+            \end{pmatrix}
+\end{align}
+
+Looking at a particular column of this:
+
+\begin{equation}
+    \begin{pmatrix}
+        (\pi - g)a_{11}-\left(\sum r_i A\vec{x}_i\right)_1 \\
+        (\pi-g)a_{21} \\
+        \vdots \\
+        (\pi -g)a_{n1}
+    \end{pmatrix}
+\end{equation}
+We can see more clearly what this is: It is the real consumption `allowance' which is `earned' by capitalists when they produce a unit of commodity $1$. In general then, the consumption dollars earned for consumption by capitalists when they produce a unit of commodity $j$ is $\vec{p}\circ \vec{\eta}_j$.  We thus have the amount of commodity $i$ consumed per consumption dollar earned, and the amount of consumption dollars earned per production unit of commodity $j$. Multiplying these two numbers thus gives us the quantity of commodity $i$ earned for consumption per unit of commodity $j$ produced:
+
+\begin{equation}
+    c_{ij} = \frac{c_i}{\vec{p}^T((\pi-g)A-\Gamma)\vec{x}}(\vec{p}\circ \vec{\eta}_j)
+\end{equation}
+
+Thus we have
+
+\begin{equation}
+    C = \frac{\vec{c}\vec{p}^T((\pi-g)A-\Gamma)}{\vec{p}^T((\pi-g)A-\Gamma)\vec{x}}
+\end{equation}
+
+Pasinetti's hyper-integrated subsystem included the direct, indirect and hyper-indirect (e.g. reinvestment) production requires to produce a single industry's net product. Wright's super-integrated subsystem includes all of these \emph{as well as} the super-indirect (e.g. consumption) production. He defines the total output of the $i^{th}$ vertically super-integrated subsystem as 
+
+\begin{equation}
+    \vec{x}_i = A\vec{x}_i+gA\vec{x}_i+\Gamma\vec{x}_i+C\vec{x}_i+\vec{w}_i
+\end{equation}
+
+Moreover we can define the \emph{vertically super-integrated labor coefficients} $\vec{v}$ via the equation
+
+\begin{equation}
+    \vec{v} = A^T\vec{v}+(A^Tg+\Gamma)\vec{v}+C^T\vec{v}
+\end{equation}
+
+So that 
+\begin{align}
+    \vec{v} &= (I-A^T-A^Tg-C^T-\Gamma)^{-1}\vec{l})^{-1}\vec{l} \\
+            &= (I-(1+g)A^T-C^T-\Gamma)^{-1}\vec{l}
+\end{align}
+\begin{theorem}
+    The production prices of a non-uniformly growing economy are proportional to the super-integrated labour coefficients, $\vec{p} = w\vec{v}$
+\end{theorem}
+
+\begin{proof}
+    First, we tactically break apart the profit equation with the intention of substitution:
+    \begin{align}\label{price-equation}
+        \vec{p} &= A^T\vec{p}+\pi A^T\vec{p}+w\vec{l} \\
+                &= A^T\vec{p}+((\pi-g)A^T-\Gamma)\vec{p}+(gA^T+\Gamma)\vec{p}+w\vec{l}
+    \end{align}
+    Now, we have the equation for capitalist consumption:
+    \begin{equation}
+        \vec{p}\circ \vec{c} = \vec{p}^T((\pi-g)A-\Gamma)\vec{x}
+    \end{equation}
+    What we haven't noticed yet is that this simplifies the expression for our capitalist consumption matrix:
+    \begin{align}
+        C = \frac{\vec{c}\vec{p}^T((\pi-g)A-\Gamma)}{\vec{p}^T((\pi-g)A-\Gamma)\vec{x}} = \frac{\vec{c}\vec{p}^T((\pi-g)A-\Gamma}{\vec{p}\circ \vec{c}}
+    \end{align}
+    Taking the transpose of $C$ and multiplying by $\vec{p}$ on the left gives
+    \begin{align}
+        C^T\vec{p} &= \frac{1}{\cancel{\vec{p}\circ \vec{c}}}(\vec{p}^T((\pi-g)A-\Gamma))^T\cancel{(\vec{c}^T\vec{p})} \\
+                   &= ((\pi-g)A^T-\Gamma)\vec{p}
+    \end{align}
+    This is precisely the second term of the right side of where we left our price equation \ref{price-equation}. Subsituting gives
+    \begin{align}
+        \vec{p} &= A^T\vec{p}+C^T\vec{p}+(gA^T+\Gamma)\vec{p}+w\vec{l} \\
+                &= ((1+g)A^T+C^T+\Gamma)\vec{p}+w\vec{l}
+    \end{align}
+    Thus
+    \begin{align}
+        \vec{p} &= w(I-(1+g)A^T-C^T-\Gamma)\vec{l} \\
+                &= w\vec{v}
+    \end{align}
+    Incredible. 
+\end{proof}
+
+The last thing I need to do is confirm that this all works with the correct equation for the price vector. With the equation
+
+\begin{equation}
+    \vec{p} = (1+\pi)(A^T\vec{p}+w\vec{l})
+\end{equation}
+
+Capitalist profits, which were $\pi((A^T\vec{p})\circ \vec{x})$, are now $\pi((A^T\vec{p}+w\vec{l})\circ \vec{x})$. This means that $g((A^T\vec{p}+w\vec{l})\circ \vec{x})$ is spent on uniform growth, but still $\vec{p}\circ \Gamma\vec{x}$ for the non-uniform growth, leaving a consumption fund of 
+
+\begin{align}
+    \pi\vec{p}^TA\vec{x}+\pi w\vec{l}\circ \vec{x}-g\vec{p}^TA\vec{x}-gw\vec{l}\circ \vec{x} -\vec{p}^T\Gamma \vec{x} &= \vec{p}^T(\pi A - gA - \Gamma)\vec{x}+\pi w(\vec{l}\circ \vec{x})-gw(\vec{l}\circ \vec{x}) \\
+    &= \vec{p}^T((\pi-g)A-\Gamma)\vec{x} + (\pi-g)w\vec{l}^T\vec{x} \\
+    &= [\vec{p}^T((\pi-g)A-\Gamma) + (\pi-g)w\vec{l}^T]\vec{x}
+\end{align}
+
+Thus we have the equation for capitalist consumption:
+\begin{equation}
+    \vec{p}\circ \vec{c} = [\vec{p}^T((\pi-g)A-\Gamma) + (\pi-g)w\vec{l}^T]\vec{x}
+\end{equation}
+
+The next cascading difference is pertaining to the matrix $C$. The amount of commodity $i$ consumed per consumption dollar earned becomes $\frac{c_i}{[\vec{p}^T((\pi-g)A-\Gamma) + (\pi-g)w\vec{l}^T] \vec{x}} = \frac{c_i}{\vec{c}\circ \vec{p}}$. We now need the amount of consumption dollars earned per production of a unit of a particular commodity. I believe analogously to before if we consider the 
+
+\section{Dissertation Notes}
+
+\subsection{Chapter 2}
+Same initial stuff; an i/o matrix $A$,
+\[
+\begin{pmatrix}
+    \vec{a}_1 & \vec{a}_2 & \ldots & \vec{a}_n   
+\end{pmatrix}
+\]
+a price vector $\vec{p}$, a wage rate $w$, a living labor vector $\vec{l}$, a gross output vector $\vec{x}$ (he uses $\vec{q}$), with the usual assumptions about each. He defines the `coexisting labor' supplied to reproduce commodity $i$ as the direct labor operating in sector $i$ plus the indirect labor operating in other sectors of the economy that is simultaneously supplied, in parallel, to replace all of the commodity inputs used up during the production of a single unit of commodity $i$. 
+
+According to Ricardo commodities differ in their difficulty of production because they require different quantitites of coexisting labor for their production. Ian frames the calculation of labor values as a vertical integration process over the technique. The process goes like this. The production of a unit of commodity $i$ uses direct labor $l_i$, plus the bundle of input commodities $\vec{a}_i$, which requires simultaneous expenditure of labor $\vec{a}_i \circ \vec{l}$. But this productio uses up another bundle of input commodities, $A\vec{a}_i$, requiring labor $A\vec{a}_i\circ \vec{l}$. Continuing in this way produces the familiar infinite series converging to give us the classic labor value equation:
+
+\[ \vec{v} = A^T\vec{\lambda} + \vec{l} \]
+
+He starts with Ricardo's notion of natural prices as `difficulty of production' measured in labor time. This requries a uniform profit rate $\pi$ (he uses $r$):
+\[
+    \vec{p} = (1+\pi)(A^T\vec{p} + w\vec{l})
+\]
+Noting that if $\pi = 0$ then these prices of production are necessarily proportional to classical labor values
+
+\begin{align}
+   & \vec{p} = A^T\vec{p} + w\vec{l} \\
+   &\implies \vec{p}(I-A^T) + w\vec{l} \\
+   &\implies \vec{p} = w(I-A^T)^{-1}\vec{l} = w\vec{\lambda}
+\end{align}
+
+He notes it was Ricardo who noted that in the situation in which compositions of capital are equal, that prices would be proportional to labor values. 
+
+He takes the aggregate wage bundle $\vec{w}$, and defines $\vec{\bar{w}} = \frac{\vec{w}}{\vec{l}\circ \vec{x}}$, e.g. the real wage bundle portion given per unit of labor supplied. (This is a way to define the hourly real wage without $\omega$ or $\vec{b}$). Taking this per-hour value and multiplying it by $l_i$ therefore gives the amount of value used as variable capital per real unit of output from industry $i$. Meanwhile the columns of $A$ give the per-unit input requirements from each industry for the column. Thus $\vec{v}\circ \vec{a}_i$ is the per-unit value used as constant capital, from which we can define 
+
+\[ k = \frac{{a}_i \circ \vec{v}}{\vec{v}\circ \vec{\bar{w}}l_i} \]
+\
+\begin{lemma}
+    If $k$ is the same for all industries than prices are proportional to classical labor values
+\end{lemma}
+
+\begin{proof}
+    todo
+\end{proof}
+
+He then moves on to Marx's transformation problem claims. For this we need to formalize his notion of surplus value. He uses the wrong formalization which doesn't count means of production costs as necessary. 
+
+Let $m_j$ denote the money-capital supplied by capitalists to sector $j$ per unit output of commodity $j$. Let $\ubar{c}_i$ denote the quantity of commodity $i$ consumed by capitalist households per unit of money-capital supplied. Note that the $\ubar{c}$ numbers are simply the entries of the capitalist consumption vector $\vec{c}$ divided by the total profit, since total profit equals total money-capital supplied. (This assumption is specific to simple reproduction!)
+
+Then $c_{ij} = \ubar{c}_im_j$ is the quantity of commodity $i$ consumed by capitalist households per unit output of commodity $j$. This defines the matrix $C$. Comparing this to his presentation in the Passinetti paper, Ian there defined instead $\vec{a}_j \circ \vec{p}$ in place of $m_j$, which is the price of the means of production for a unit of $j$. Putting these together, it seems like what Ian is referring to as money capital supplied is really the price of the means of production. So his use of interest isn't really interest, but does point to an extra stage of exchange in which capitalists take what they have received from their capital and spend it on consumption goods. It is only after this redistribution of the money supply that the capitalists purchase their means of production and labor power. Thus the matrix $C$ is
+
+\begin{equation}
+    C = \ubar{\vec{c}}\vec{m}^T
+\end{equation}
+
+From this matrix $C$ we can define the super-integrated labor values via the new matrix $\tilde{A}=A+C$. We do this in the exact same way, by vertically integrating with respect to this new matrix $\tilde{A}$. This yields the equation
+
+\begin{equation}
+    \vec{v}^*=\tilde{A}^T\vec{v}^*+\vec{l}
+\end{equation}
+
+\begin{definition}
+    A steady-state economy produces quantities $\vec{x} = A\vec{x}+\vec{w}+\vec{c}$ at prices $\vec{p}$ satisfying $\vec{p}=(1+\pi)(A^T\vec{p}+w\vec{l})$, where workers and capitalists spend what they earn, e.g. $\vec{p}\circ\vec{w} = w(\vec{l}\circ\vec{x})$ and $\vec{p}\circ\vec{c} = \pi((A^T\vec{p}+w\vec{l})\circ\vec{x})$
+\end{definition}
+
+\begin{lemma}
+    The production prices of a steady state economy are proportional to the super-integrated labor values.
+\end{lemma}
+
+\begin{proof}
+    We have the cost vector $\vec{m} = A^T\vec{p}+w\vec{l}$. Substituting this into our capitalist consumption identity gives
+    \begin{align}
+        & \vec{p}\circ\vec{c} = \pi(\vec{m}\circ\vec{x}) \\
+        &\implies \pi = \frac{\vec{p}\circ\vec{c}}{\vec{m}\circ\vec{x}} = \vec{p}\circ \vec{\ubar{c}}
+    \end{align}
+    Substituting this into the price equation yields 
+    \begin{align}
+        \vec{p} &= A^T\vec{p}+w\vec{l}+\vec{p}\circ\ubar{\vec{c}}(A^T\vec{p}+w\vec{l}) \\
+                &= A^T\vec{p}+w\vec{l}+(\vec{p}\circ\ubar{\vec{c}})\vec{m} \\
+    \end{align}
+\end{proof}
+
+% Uncomment if endnotes 
+% \theendnotes
+
+% Uncomment if bibliography
+% \printbibliography
+
+\section{Reconciling with my model}
+Recapping, we have effectively two industries, a capital goods and wage goods industry, giving us an i/o matrix
+
+\[ A = \begin{pmatrix}
+    a_{11} & a_{22} \\
+    0 & 0 
+\end{pmatrix} \]
+along with a living labor vector
+\[
+    \begin{pmatrix}
+        l_1 \\ l_2
+    \end{pmatrix}
+\]
+
+\subsection{Sraffa Chapter}
+
+\subsubsection{The Standard Commodity}
+Suppose we have two situations $A$ and $B$ which share the same technological parameters but differ in income distribution. The idea is to get a sense of how the price system changes with respect to changes in the income distribution, holding technical parameters constant. To consistently `close'(?) the price system in both systems we need to specify a \emph{numeraire} equation $\vec{p}\circ\vec{d}$ where $\vec{d}$ is an arbitrarily chosen commodity bundle. 
+
+The two price systems here are denoted $\vec{p}_A = f(w_A,r_A)$ and $\vec{p}_B = f(w_B, r_B)$
+
+\begin{lemma}
+    Consider $\vec{p}_A \circ \vec{d} = (1+r_A)A^T\vec{p}_A+\vec{l}w_A$ and $\vec{p}_B \circ \vec{d} = (1+r_B)A^T\vec{p}_B+\vec{l}w_B$. Let $\vec{d}$ be an arbitrary bundle of commodities. Then
+    \begin{equation}\label{price-fluctuations}
+        \Delta \vec{p} \circ \vec{d} = (1+r_A+\Delta r)A^T\Delta \vec{p} \circ \vec{d} + \Delta r A^T\vec{p}_A \circ \vec{d} + \Delta w \vec{l} \circ \vec{d}
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    todo
+\end{proof}
+
+The first term here is the important part. It shows that the price of $\vec{d}$ is affected by changes in the prices of other commodities (is this not obvious?)
+
+The consequence according to Ian is that if we choose a particular commodity bundle $\vec{d}$ as numeraire, i.e. $\vec{p}\circ \vec{d} = 1$ (implying $\Delta \vec{p} \circ \vec{d} = 0$) then it must satisfy the constraint 
+
+\[ (1+r_A+\Delta r)A^T\Delta \vec{p} \circ \vec{d} + \Delta r A^T\vec{p}_A \circ \vec{d} + \Delta w \vec{l} \circ \vec{d}
+\]
+This is Sraffa's measuring problem, and his solution is the \emph{standard commodity}, which is a bundle $\vec{b}$ satisfying the equation
+
+\begin{equation}
+    \lambda \vec{b} = A\vec{b}
+\end{equation}
+
+where $\lambda$ is the dominant eigenvalue of $A$. Note that 
+
+\begin{align}
+    \lambda \vec{p} \circ \vec{b} &= \vec{p} \circ (\lambda \vec{b}) \\
+                                  &= \vec{p} \circ A\vec{b} \\
+                                  &= (A\vec{b}) \circ \vec{p} \\
+                                  &= \vec{b}^TA^T\vec{p} \\
+                                  &= A^T\vec{p} \circ \vec{b}
+\end{align}
+Therefore 
+\begin{equation}\label{standard-commodity}
+    \lambda = \frac{A^T\vec{p} \circ \vec{b}}{\vec{p} \circ \vec{b}}
+\end{equation}
+
+Note that the numerator here is the price of production of the standard commodity, while the denominator is it's price. Since the eigenvalue is constant, it follows that the standard commodity has the property that the cost of production of $\vec{b}$ is always a constant fraction of it's selling price regardless of the price system $\vec{p}$. Substituting \ref{standard-commodity} into \ref{price-fluctuations} gives
+
+\begin{align}
+    \Delta \vec{p} \circ \vec{b} &= (1+r_A+\Delta r)A^T\Delta \vec{p}\circ \vec{b}+\Delta r A^T\vec{p}_A\circ \vec{b} + \Delta w \vec{l} \circ \vec{b} \\
+                                 &= (1+r_A+\Delta r) \Delta \vec{p} \circ (A\vec{b}) + \Delta r A^T\vec{p}_A\circ \vec{b} + \Delta w \vec{l} \circ \vec{b} \\
+                                 &= (1+r_A+\Delta r) \lambda \vec{p}
+\end{align}
+
+\subsection{Chapter 7: The Equilibrium Convergence Model}
+
+We have $n$ many commodities being produced, a non-negative productive i/o matrix $A$ and a labor vector $\vec{l}$ defining the technical parameters of the system. We have a time inedepentent `labor force' of size $L$ ($L$ is not actually the labor force, but the number of total hours of labor available), a portion of which will be employed at any given time, but not necessarily all. We also have a time independent amount of money circulating in the economy $M$. Each commodity has a time-varying market price, the vector of unit prices for each industry is $\vec{p}(t)$. Also time-dependent is our gross output vector $\vec{q}(t)$ (I have been using $\vec{x}$.
+
+Let $m_w(t)$ denote at time $t$ the amount of money held by worker households e.g. their bank balances. Assume workers have a constant propensity to consume, specified by the proportion $\alpha_w \in (0,1]$. The aggregate worker expenditure each period is thus $\alpha_wm_w$.  
+
+Assume for simplicity that the real wage is always sufficient to ensure the reproduction of the labor force $L$ (e.g. they will never die off). For wages, we have an individual means of subsistence bundle $\vec{\ubar{w}}$ (e.g. $\vec{b}$) which is constant. The total means of subsistence for society is $\vec{w} = k\vec{\ubar{w}}$ for some $k$. What is $k$?
+
+We said before that $\alpha_wm_w$ is the total money spent by workers in a period. Dividing this number by the price of the means of subsistence thus gives us the total number of real wage bundles are purchased by workers, e.g. the number of workers employed. This is $k$. The real wage is therefore 
+
+\[ \vec{w} = \frac{\alpha_wm_w}{\vec{p}\circ\vec{\ubar{w}}}\vec{\ubar{w}} \]
+
+$\vec{w}$ is a function of time by virtue of it depending on $\vec{p}(t)$, as well as $m_w(t)$. Next we turn to worker money stocks. The total number of labor hours done in a period, which can be thought of as the level of employment, is $\vec{l}\circ\vec{q}$. Let $w(t)$ denote the hourly wage. The total money paid to workers as wages is then $(\vec{l}\circ\vec{q})w(t)$. The difference between this and the worker expenditure $\alpha_wm_w$ is therefore the discrete rate of change of the worker money savinds, $m_w$. Thus
+
+\begin{equation}
+    \frac{dm_w}{dt} = (\vec{l}\circ\vec{q})w - \alpha_wm_w \label{change-in-worker-savings}
+\end{equation}
+
+Now we get into the interesting stuff. We know that wages are supposed to increase or decrease with supply and demand. We can measure the demand via the level of employment. Since $\vec{l}$ is constant, this demand only changes via the quantity term, $\vec{q}$. To say that the relative wages increase or decrease with the level of employment is therefore to make the claim that 
+
+\[ \frac{1}{w}\frac{dw}{dt} \propto \vec{l}\circ \vec{\frac{dq}{dt}} \]
+This makes it such that the relative hourly wage rises or falls as level of employment rises or falls, but an additional factor is the shrinking or expanding labor market. As $L-\vec{l}\circ\vec{q}$ approaches $0$, labor becomes more scarce, and the wages approach infinity. Likewise as it approaches $L$, wages approach a minimum due to abundance. We can thus say that 
+
+\begin{equation}
+    \frac{1}{w}\frac{dw}{dt} \propto \frac{1}{L-\vec{l}\circ\vec{q}}
+\end{equation}
+
+Combining these two factors and letting $\eta_w$ be the constant of proportionality, we have arrived at a differential equation modelling the wages as a function of the supply/demand of labor:
+
+\begin{equation}\label{wage-rate}
+    \frac{dw}{dt} = \eta_w \left(\vec{l}\circ \frac{d\vec{q}}{dt}\right)\left(\frac{1}{L-\vec{l}\circ\vec{q}}\right)w(t)
+\end{equation}
+
+Next we turn to capitalist households. Similar to $m_w$, let $m_c(t)$ denote the total money stock of the capitalist class, and $\alpha_c$ be a constant of proportionality denoting the proportion of this stock which they use on consumption each period. Also as before we let $\vec{\ubar{c}}$ be a constant vector representing the bundle of goods consumed by a single capitalist, so that $\frac{\alpha_cm_c}{\vec{p}\circ\vec{\ubar{c}}}$ is the total number of such bundles purchased in a period. Total capitalist consumption as a function of time is therefore 
+
+\begin{equation}
+    \vec{c}(t) = \frac{\alpha_cm_c}{\vec{p}\circ\vec{\ubar{c}}}\vec{\ubar{c}}
+\end{equation}
+
+Now we turn to interest. The necessary cost of production by industry $i$ is $\kappa_i = (\vec{a}_i\circ\vec{p}+wl_i)q_i$. We assume that these costs are financed by borrowing money-capital from finance capitalists. These capitalists receive interest on these loans each period based on a time-varying interest rate $r(t)$. Let $\psi_i$ denote the interest which finance capitalists receive from industry $i$. Thus
+
+\begin{equation}
+    \psi_i = \kappa_i r(t)
+\end{equation}
+
+The aggregate interest income for all finance capitalists is thus
+
+\begin{align}
+    \sum_{i=1}^n \psi_i = \sum_{i=1}^n\kappa_i r &= \sum_{i=1}^n (\vec{a}_i\circ\vec{p}+w\vec{l})q_ir \\
+                                                 &= ((A^T\vec{p}+w\vec{l})\circ\vec{q})r
+\end{align}
+
+Note also that $\sum \kappa_i$ is the total amount of borrowing. Next we turn to the profit-of-enterprise collected by industrial capitalists. Capitalists must pay their costs of production $\kappa_i$ as well as interest to the finance capitalists they borrowed from, $\kappa_ir$. The total cost of production in actuality for a capitalist is thus 
+
+\[ \kappa_i+\kappa_ir = \kappa_i(1+r) \]
+
+This is helpful, but in order to fully spell out capitalist profits we need to consider how prices change according to supply and demand. Demand for a commodity comes from two places: industries and households. Starting with industries, the demand for commodity $i$ is a function of the technique and the scale of production, e.g. $\vec{a}_i \circ \vec{q}$. The demand from capitalist households is $c_i$, and the demand from worker households is $w_i$, both of which we have defined within our model. The total demand for commodity $i$ is therefore $\vec{a}_i\circ \vec{q}+w_i+c_i$ (all of which are implicitly functions of time). Total revenue then is $p_id_i$. The total profit-of-enterprise for industrial capitalists in industry $i$ is therefore
+
+\begin{equation}\label{profit-system}
+    \pi_i(t) = p_id_i-\kappa_i(1+r)
+\end{equation}
+
+With interests and profits taken care of, we can now write a differential equation modelling the money stocks of capitalists over time. The change in their money stocks is the sum of their interest and profit-of-enterprise minus their spending, e.g.
+
+\begin{equation}
+    \frac{dm_c}{dt} = \sum_{i=1}^n \psi_i + \sum_{i=1}^n \pi_i - \alpha_cm_c \label{change-in-capitalist-savings}
+\end{equation}
+
+Next we take a closer look at the interest rate, $r(t)$. Capitalists loan money from the pool of their total money stock $m_c$. The relative change in the money stocks should be negatively proportional to the relative change in the interest rate, i.e. if money stocks drop to $95\%$ of what they were, then the interest rate should rise by an appropriate proportional amount given by the constant of proportionality $\eta_c$ (the constant elasticity of the interest rate).so should the interest rate, up to some constant of proportionality $\eta_i$
+ We thus have the following equation for the interest rate:
+ \begin{equation}\label{interest-rate}
+    \frac{1}{r}\frac{dr}{dt} = -\eta_c \frac{1}{m_c}\frac{dm_c}{dt}
+\end{equation}
+
+The supply of commodities in our model can not be assumed to equal the demand. We therefore need to keep track of the stock of unsold commodities. Let $s_i(t)$ denote the number of units of commodity $i$ available for sale each period. Assume for simplicty that no commodities expire. The rate of change of the supply of a commodity is of course equal to the excess of output over supply, i.e.
+
+\begin{equation}
+    \frac{ds_i}{dt} = q_i - d_i \label{ds-by-dt}
+\end{equation}
+
+The modelling of the price of a commodity is very similar to the modelling we did for the hourly wage. Firstly, the relative price of a commodity should vary inversely with it's excess demand, e.g. 
+\begin{equation}
+    \frac{1}{p_i}\frac{dp_i}{dt} \propto -\frac{ds_i}{dt}
+\end{equation}
+
+Additionally the price change approaches positive infinity as inventory approaches $0$, i.e. 
+
+\begin{equation}
+    \frac{1}{p_i}\frac{dp_i}{dt} \propto \frac{1}{s_i}
+\end{equation}
+
+Putting these together and letting $\eta_i > 0$ denote the constant price elascitiy of commodity $i$, we have the $n$ differential equations
+
+\begin{equation}\label{price-adjustment}
+    \frac{dp_i}{dt} = -\eta_i\frac{ds_i}{dt}\frac{p_i}{s_i}
+\end{equation}
+
+Now we turn to modelling the behavior of capitalists and how they adjust their production according to market conditions. A firm that profits will borrow more money in order to increase their supply with the expectation of greater profit. The profit rate for industry $i$, adjusted according to their interest payments, is $\frac{\pi_i}{\kappa_i(1+r)}$. This number represents the expected profit-of-enterprise earned from producing $1$ unit of additional investment of money-capital in sector $i$. Capitalists aim to maximize their profit by differentially injecting or withdrawing money investments based on signals in the form of these profit rates. The relative change in the scale of production for industry $i$ is therefore assumed to be directly proportional to the profit rate, i.e. 
+
+\begin{equation}
+    \frac{1}{q_i}\frac{dq_i}{dt} \propto \frac{\pi_i}{\kappa_i(1+r)}
+\end{equation}
+
+We thus have the differential equations 
+
+\begin{equation}
+    \frac{1}{q_i}\frac{dq_i}{dt} = \kappa_{n+i}\frac{\pi_i}{\kappa_i(1+r)}
+\end{equation}
+
+Lastly, define the return on investment $r_i(t)$ by
+
+\begin{equation}
+    r_i(t) = \frac{p_id_i-\kappa_i}{\kappa_i}
+\end{equation}
+
+Recall that $p_id_i$ is total revenue, while $\kappa_i$ is total costs, so this is the profit rate \emph{unfettered} by interest payments. Multiplying both sides of this by $\kappa_i$ and then adding $\kappa_i$ to both sides gives
+
+\begin{equation}
+    r_i\kappa_i +\kappa_i = p_id_i \implies \kappa_i(1+r_i) = p_id_i
+\end{equation}
+
+Expanding our equation for the relative change in quantities and inserting this identity gives
+
+\begin{align}
+    \frac{1}{q_i}\frac{dq_i}{dt} &= \eta_{n+i}\frac{p_id_i-\kappa_i(1+r)}{\kappa_i(1+r)} \label{quantity-diff-eq} \\
+    &= \eta_{n+i}\frac{1}{1+r}\frac{\cancel{\kappa_i}(1+r_i)-\cancel{\kappa_i}(1+r)}{\cancel{\kappa_i}} \\
+    &= \eta_{n+i}\frac{1}{1+r}(r_i-r) 
+\end{align}
+
+Therefore we have the alternative equation
+
+\begin{align}
+    \frac{dq_i}{dt} &= \eta_{n+i}\frac{q_i}{1+r}(r_i-r) \\
+                    &\propto (r_i-r)
+\end{align}
+
+This equation tells us that industrial capitalists expand the scale of their production in an industry if the expected return on investment is greater than the cost of borrowing. 
+
+This completes our defining of the model. The first thing to observe about it is the following:
+
+\begin{theorem}
+    Aggregate savings are constant and equal to the total money stock. That is to say:
+    \begin{align}
+        m_w(t)+m_c(t) &= m_w(0) + m_c(0) \\
+                      &= M
+    \end{align}
+\end{theorem}
+
+\begin{proof}
+    First, note that $\vec{p}\circ\vec{w}$ and $\vec{p}\circ\vec{c}$ represents the total price of all commodities purchased by workers and capitalists in a period. This amount must of course be equal to the proportion of money savings which these classes spend each period. That is to say: $\alpha_w m_w = \vec{p}\circ\vec{w}$ and $\alpha_c m_c = \vec{p}\circ\vec{c}$. We sum the profit equations \ref{profit-system}, and substitute the equation for cost of production before interest payments $\kappa_i = (\vec{a}_i \circ \vec{p}+wl_i)q_i$, along with our initial observations:
+    \begin{align}
+        \sum_i \pi_i &= \sum_i p_id_i - \kappa_i(1+r) \\
+                     &= \sum_i p_i(\vec{a}_i\circ\vec{q}+w_i+c_i) - \sum_i \kappa_i - \sum_i \kappa_ir \\
+                     &= \sum_i p_i (\vec{a}_i \circ \vec{q}) + \sum_i p_iw_i + \sum_i p_ic_i -\sum_i\kappa_i - \sum_i\kappa_ir \\
+                     &= \vec{p} \circ A\vec{q} + \vec{p}\circ\vec{w} + \vec{p}\circ\vec{c}-\sum_i \kappa_i - \sum_i \kappa_ir \\
+                     &= \vec{p}\circ A\vec{q}+\alpha_wm_w + \alpha_c \vec{c} - \sum_i (\vec{p}\circ\vec{a}_i+wl_i)q_i - r\sum_i \kappa_i  \\
+                     &= \vec{p}\circ A\vec{q}+\alpha_wm_w + \alpha_c \vec{c} - \sum_i (\vec{p}\circ\vec{a}_i)q_i - w\sum_i l_iq_i - r\sum_i \kappa_i \\
+                     &= \cancel{\vec{p}\circ A\vec{q}} + \alpha_w m_w +\alpha_c \vec{c} - \cancel{\vec{q}\circ A^T\vec{p}} - w(\vec{l}\circ\vec{q}) - r\sum_i \kappa_i
+    \end{align}
+    Recall that $r\sum_i \kappa_i$ is simply the total interest accrued by money capitalists, i.e. $\sum_i \psi_i$. We thus have
+    \begin{equation}
+        \sum_i \pi_i = \alpha_w m_w + \alpha_c m_c - w(\vec{l}\circ\vec{q}) - \sum_i \psi_i \label{total-profit}
+    \end{equation}
+    Which says that total profit taken in by capitalists equals total money spent by the population minus the total wages paid to workers and total interest paid to finance capitalists. 
+    
+    Next we consider the derivatives of $m_w$ and $m_c$. Summing our equations for these (\ref{change-in-worker-savings} and \ref{change-in-capitalist-savings}) for these gives and then substituting for $\sum_i \pi_i$ via \ref{total-profit} yields
+    \begin{align}
+        \frac{dm_w}{dt}+\frac{dm_c}{dt} &= \sum_i \pi_i +w(\vec{l}\circ\vec{q}) + \sum_i \psi_i -\alpha_wm_w - \alpha_cm_c \\
+                                        &= \alpha_w m_w + \alpha_c m_c - w(\vec{l}\circ\vec{q}) - \sum_i \psi_i +w(\vec{l}\circ\vec{q})+\sum_i \psi_i -\alpha_wm_w -\alpha_cm_c \\
+                                        &= 0
+    \end{align}
+    Thus $\frac{d}{dt}(m_c+m_w) = 0$, meaning that $m_c+m_w$ must be constant and equal to some number, call it $M$. 
+\end{proof}
+
+Next we seek to simplify it a bit. Firstly, we can solve equation \ref{price-equation} for $p_i$: 
+
+\begin{align}
+    \frac{dp_i}{dt} &= -\eta_i\frac{ds_i}{dt}\frac{p_i}{s_i} \\
+                    &\implies \int \frac{1}{p_i}dp_i = -\eta_i \int \frac{1}{s_i}ds_i \\
+                    &\implies \ln|p_i| = -\eta_i \ln|s_i|+c \\
+                    &\implies p_i = \left( e^{\ln|s_i|} \right)^{-\eta_i}C \\
+                    &\implies p_i = \frac{C}{s_i^{\eta_i}}
+\end{align}
+
+Solving for $C$ by plugging in $p_i(0)$ and $s_i(0)$ gives 
+
+\begin{equation}
+    p_i = p_i(0)s_i(0)^{n_i}\frac{1}{s_i^{\eta_i}} = k_i\frac{1}{s_i^{\eta_i}}
+\end{equation}
+
+where $k_i = p_i(0)s_i(0)^{\eta_i}$. From this we can see that a high market price indicates a low inventory. In particular then, we have that the available inventory for the $i^{th}$ industry is 
+
+\begin{equation}
+    s_i = \left( \frac{p_i}{k_i} \right)^{-\frac{1}{\eta_i}} \label{s-in-terms-of-p}
+\end{equation}
+
+This demonstrates that the available inventories can be seen entirely as a function of the current market prices. 
+
+Similarly, we can derive an equation for the wage rate as a function of level of employment, $\vec{l} \circ \vec{q}$. Note that since $\vec{l}$ is assumed constant, a differential change in the employment level is reducible to a differential change in the total output vector $\vec{q}$ times $\vec{l}$, i.e. $\vec{l}\frac{d\vec{q}}{dt} = \frac{d(\vec{l}\circ\vec{q})}{dt}$. Equation \ref{wage-rate} gives
+
+\begin{align}
+    & \frac{1}{w}dw = \eta_w\left( \frac{d(\vec{l}\circ \vec{q})}{\cancel{dt}}) \right)\left( \frac{1}{L-\vec{l}\circ\vec{q}} \right)\cancel{dt} \\
+    &\implies \int \frac{1}{w}dw = \eta_w\int \frac{1}{L-\vec{l}\circ\vec{q}}d(\vec{l}\circ\vec{q}) \\
+    &\implies \ln|w| = -\eta_w \ln|L-\vec{l}\circ\vec{q}|+C \\
+    &\implies w = e^{{\ln|L-\vec{l}\circ\vec{q}|}^{-\eta_w}}e^C \\
+    &\implies w = \frac{C}{ \left( L-\vec{l}\circ\vec{q} \right)^{-\eta_w}}
+\end{align}
+
+Thus, letting $k_w = w(0)(L-\vec{l}\circ\vec{q}(0))^{-\eta_w}$, we have
+\begin{equation}
+    w(t) = \frac{k_w}{\left(L-\vec{l}\circ\vec{q}\right)^{-\eta_w}} \label{wages-over-time}
+\end{equation}
+
+Wages can therefore be seen as a function of quantities. Plugging this equation back into equation \ref{wage-rate} gives us:
+
+\begin{align} 
+    \frac{dw}{dt} &= \eta_wk_w\left( \vec{l}\circ \frac{d\vec{q}}{dt}\right)\left(\frac{1}{L-\vec{l}\circ\vec{q}}\right)\frac{1}{\left(L-\vec{l}\circ\vec{q}\right)^{-\eta_w}} \\
+                  &= \eta_wk_w\left( \vec{l}\circ \frac{d\vec{q}}{dt}\right)\frac{1}{(L-\vec{l}\circ\vec{q})^{\eta_w+1}} \label{wages-in-terms-of-quantities}
+\end{align}
+
+Finally, we can solve the equation for the interest rate \ref{interest-rate} in an identical manner to express it in terms of the stock of money capital:
+
+\begin{align}
+   & \int\frac{1}{r}dr = -\eta_c \int \frac{1}{m_c}dm_c \\
+   &\implies \ldots \implies r(t) = \frac{k_r}{m_c^{\eta_c}}
+\end{align}
+
+where $k_r = r(0)m_c(0)^{\eta_c}$. Thus the interest rate is simply a function of the capitalist savings. 
+
+We are now equipped to describe the entire system in terms of just the prices $p_i$, quantities $q_i$, and wages $w$. 
+
+For wages, we can simply plug equation \ref{wages-over-time} into \ref{change-in-worker-savings} to give:
+
+\begin{align}
+    \frac{dm_w}{dt} &= w(\vec{l}\circ\vec{q}) - \alpha_wm_w \\
+                    &= \frac{k_w(\vec{l}\circ\vec{q})}{(L-\vec{l}\circ\vec{q})^{-\eta_w}}-\alpha_w m_w
+\end{align}
+
+For $p_i$, we simply take equation \ref{price-adjustment} and plug in equation \ref{s-in-terms-of-p} in place of $s_i$ to obtain 
+
+\begin{equation}
+    \frac{dp_i}{dt} = \eta_i k_i^{-{1}{\eta_i}}p_i^{1+\frac{1}{\eta_i}}\frac{ds_i}{dt} =  \eta_i k_i^{-{1}{\eta_i}}p_i^{1+\frac{1}{\eta_i}}(q_i-d_i)
+\end{equation}
+
+Where the last equality follows from \ref{ds-by-dt}. Recall that
+
+\begin{align}
+    d_i = \vec{a}_i\circ\vec{q}+w_i+c_i
+\end{align}
+
+We can now re-express capitalist savings in terms of worker savings and the constant stock of money $M$: 
+\begin{equation}
+    \vec{c} = \frac{\alpha_c(M-m_w)}{\vec{p}\circ \vec{\ubar{c}}}\vec{\ubar{c}}
+\end{equation}
+
+Thus 
+\begin{equation}
+    c_i = \frac{\alpha_c (M-m_w)}{\vec{p}\circ\vec{\ubar{c}}}\ubar{c}_i
+\end{equation}
+
+Thus expanding out $d_i$ gives
+
+\begin{equation}
+    d_i = \vec{a}_i \circ \vec{q}+\frac{\alpha_w m_w}{\vec{p}\circ\vec{\ubar{w}}}\ubar{w}_i + \frac{\alpha_c (M-m_w)}{\vec{p}\circ\vec{\ubar{c}}}\ubar{c}_i
+\end{equation}
+
+Substituting this in for $d_i$ in our latest equation for $\frac{dp_i}{dt}$ finally gives us:
+\begin{equation}
+    \frac{dp_i}{dt} = -\eta_i k_i^{-\frac{1}{\eta_i}}p_i^{1+\frac{1}{\eta_i}}\left( q_i-\vec{a}_i\circ\vec{q}-\frac{\alpha_c(M-m_w)}{\vec{p}\circ\vec{\ubar{c}}}\ubar{c}_i-\frac{\alpha_wm_w}{\vec{p}\circ\vec{\ubar{w}}}\ubar{w}_i \right)
+\end{equation}
+
+Which expressed $p_i(t)$ entirely in terms of constants and the vector $\vec{q}(t)$ and the scalar $m_w(t)$. 
+
+Finally turning to $\frac{dq_i}{dt}$, we start with equation \ref{quantity-diff-eq}:
+\begin{align}
+    \frac{1}{q_i} \frac{dq_i}{dt} = \eta_{n+i}\frac{p_id_i-\kappa_i(1+r)}{\kappa_i(1+r)} = \eta_{n+i}\left( \frac{p_id_i}{\kappa_i(1+r)}-1 \right)
+\end{align}
+
+Multiply both sides by $q_i$, distribute it inside the parentheses. Note that $\kappa_i = (\vec{a}_i\circ\vec{p}+wl_i)q_i$, so the $q_i$'s cancel out in the first term. Substituting our equation for $d_i$ thus gives
+
+\begin{equation}
+    \frac{dq_i}{dt} = -\eta_{n+i}\left( \frac{p_i(\vec{a}_i\circ\vec{q}+\frac{\alpha_c(M-m_w)}{\vec{p}\circ\vec{\ubar{c}}}\ubar{c}_i+\frac{\alpha_wm_w}{\vec{p}\circ\vec{\ubar{w}}}\ubar{w}_i)}{(\vec{a}_i\circ \vec{p}+l_i\frac{k_w}{L-\vec{l}\circ{q}})^{\eta_w}(1+\frac{k_r}{(M-m_w)^{\eta_c}})}-q_i \right)
+\end{equation}
+ 
+The final system of equations characterize the macrodynamic system.
+
+\begin{equation}
+    \frac{dp_i}{dt} = -\eta_i k_i^{-\frac{1}{\eta_i}}p_i^{1+\frac{1}{\eta_i}}\left( q_i-\vec{a}_i\circ\vec{q}-\frac{\alpha_c(M-m_w)}{\vec{p}\circ\vec{\ubar{c}}}\ubar{c}_i-\frac{\alpha_wm_w}{\vec{p}\circ\vec{\ubar{w}}}\ubar{w}_i \right)
+\end{equation}
+
+\begin{equation}
+    \frac{dq_i}{dt} = -\eta_{n+i}\left( \frac{p_i(\vec{a}_i\circ\vec{q}+\frac{\alpha_c(M-m_w)}{\vec{p}\circ\vec{\ubar{c}}}\ubar{c}_i+\frac{\alpha_wm_w}{\vec{p}\circ\vec{\ubar{w}}}\ubar{w}_i)}{(\vec{a}_i\circ \vec{p}+l_i\frac{k_w}{L-\vec{l}\circ{q}})^{\eta_w}(1+\frac{k_r}{(M-m_w)^{\eta_c}})}-q_i \right)
+\end{equation}
+
+\begin{equation}
+    \frac{dm_w}{dt} = \frac{k_w(\vec{l}\circ\vec{q})}{(L-\vec{l}\circ\vec{q})^{-\eta_w}}-\alpha_w m_w
+\end{equation}
+
+Thus what we have at the end of it all is a $2n+1$-dimensional system of differential equations in prices, quantity stocks, and worker money savings. The system's behavior is defined by the $2n+2$ elasticity parameters, consisting of $\eta_1,\ldots, \eta_n,\eta_{n+1},\ldots,\eta_{2n},\eta_w$, and $\eta_c$, and the initial conditions $\vec{p}(0)$, $\vec{q}(0)$, $m_w(0)$, $r(0)$ and $w(0)$. $r(0)$ and $w(0)$ are here because $r(0)$ can be used to solve for $m_c(0)$, which is needed in order to determine the initial money stock via integrating $\frac{dm_w}{dt}+\frac{dm_c}{dt}$ and solving for the constant of integration, and $w(0)$ is used to determine $k_w$. Thus we have a system of $2n+2$ primary curves evolving over time, with all others a function of these, and $3n+3$ constant parameters characterizing those curves, as well as a labor force of size $L$, and technique parameters $A$ and $\vec{l}$. 
+
+\subsection{Equilibrium Analysis}
+
+ 
+\end{document} 
+
+
+
